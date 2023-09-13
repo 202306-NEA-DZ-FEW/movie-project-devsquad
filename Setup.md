@@ -46,7 +46,7 @@ Create a new file called `.prettierrc.js` in the root folder and put the followi
 module.exports = {
   semi: false,
   singleQuote: false, // Do you want to use double or single quotations?
-  trailingComma: 'all',
+  trailingComma: "all",
 }
 ```
 
@@ -91,7 +91,7 @@ npx lint-staged
 
 Now run `npm run prepare` that we created previously to initialize the new changes we created.
 
-### 4.  [Commitizen](https://github.com/commitizen/cz-cli) + [Commitlint]() [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+### 4. [Commitizen](https://github.com/commitizen/cz-cli) + [Commitlint]() [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 Commitizen and Conventional Commits are used to force correct code commit messages in the project. Commitizen is the tool while Conventional commits is the standard while Commitlint is a tool used to enforce that you follow the conventions.
 
@@ -128,7 +128,8 @@ npm install --save-dev @commitlint/{config-conventional,cli}
 npm install --save-dev @commitlint/config-conventional @commitlint/cli
 ```
 
-Create configuration file with the following command 
+Create configuration file with the following command
+
 ```
 echo "module.exports = {
     extends: ['@commitlint/config-conventional'],
@@ -156,7 +157,9 @@ echo "module.exports = {
     },
 };" > commitlint.config.js
 ```
+
 Now let's finalize this by adding the precommit message
+
 ```
 npx husky add .husky/commit-msg  'npx --no -- commitlint --edit ${1}'
 ```

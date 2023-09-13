@@ -50,12 +50,12 @@ Your website need to have the following pages:
       7. Director's name
       8. Overview of the movie
       9. The main 5 actors of the movies in the credit section (Use the API for this)
-      10. A   related movies section which includes at least five related movies (Use the API for this)
+      10. A related movies section which includes at least five related movies (Use the API for this)
       11. A trailer section that has the movie trailer from youtube
       12. The movie production company name and logo.
    2. Functionality:
-       1. Clicking an actor in the main actors should go to the single actor page.
-       2. Clicking on a movie in the related movies section should take you to the Single movie page (#3)
+      1. Clicking an actor in the main actors should go to the single actor page.
+      2. Clicking on a movie in the related movies section should take you to the Single movie page (#3)
 4. Actors page - Shows a list of all popular actors. Clicking on an actor takes you to the Single actors page (#5)
 5. Single actors page - Shows information about the current actor.
    1. The information includes:
@@ -92,7 +92,7 @@ src/
 │  ├─ index.jsx           // Home page
 │  ├─ movies/
 │     ├─ index.jsx        // Movies page
-│     ├─ [movieId].jsx    // Single movie page 
+│     ├─ [movieId].jsx    // Single movie page
 ├─ components/
 │  ├─ Navbar/
 │     ├─ Navbar.jsx
@@ -169,8 +169,8 @@ After finishing the project, do the following:
 
 1. Deploy the project on netlify so you can have a link to use it in your portfolio. Don't forget to add a link in your website that points to this project.
 2. Remove everything from this README.md file and add the following content to it:
-    1. A screenshot of the website.
-    2. Your project's name.
-    3. Description of the project.
-    4. Tools used.
-    5. Your names.
+   1. A screenshot of the website.
+   2. Your project's name.
+   3. Description of the project.
+   4. Tools used.
+   5. Your names.
