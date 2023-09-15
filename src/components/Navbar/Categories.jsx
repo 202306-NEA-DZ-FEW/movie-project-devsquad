@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-
-const MovieCategories = () => {
+import Link from "next/link"
+const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("")
   const [movies, setMovies] = useState([])
+  const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false)
 
   const handleCategoryChange = async (category) => {
     setSelectedCategory(category)
@@ -13,44 +14,48 @@ const MovieCategories = () => {
     const data = await response.json()
     setMovies(data.results)
   }
-
+  const toggleMoviesDropdown = () => {
+    setIsMoviesDropdownOpen(!isMoviesDropdownOpen)
+  }
   return (
-    <div>
-      <h2>Movie Categories</h2>
-      <select
-        value={selectedCategory}
-        onChange={(e) => handleCategoryChange(e.target.value)}
-      >
-        <option value="">Select a category</option>
-        <option value="top_rated">Top Rated</option>
-        <option value="popular">Popular</option>
-        <option value="latest">Latest</option>
-        <option value="now_playing">Now Playing</option>
-        <option value="upcoming">Upcoming</option>
-      </select>
-
-      {selectedCategory && (
-        <div>
-          <h2>
-            {selectedCategory.charAt(0).toUpperCase() +
-              selectedCategory.slice(1)}{" "}
-            Movies
-          </h2>
-          <ul>
-            {movies?.map((movie) => (
-              <li key={movie.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                />
-                <span>{movie.title}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className=" bg-transparent">
+      <a href="#" onClick={toggleMoviesDropdown}>
+        Movies
+      </a>
+      {isMoviesDropdownOpen && (
+        <ul
+          value={selectedCategory}
+          onChange={(e) => handleCategoryChange(e.target.value)}
+        >
+          <li>
+            <Link href={`./`} value="top_rated">
+              Top Rated
+            </Link>
+          </li>
+          <li>
+            <Link href={`./`} value="now-playing">
+              Now Playing
+            </Link>
+          </li>
+          <li>
+            <Link href={`./`} value="upcoming">
+              Upcoming
+            </Link>
+          </li>
+          <li>
+            <Link href="./" value="popular">
+              Popular
+            </Link>
+          </li>
+          <li>
+            <Link href="./" value="latest">
+              Latest
+            </Link>
+          </li>
+        </ul>
       )}
     </div>
   )
 }
 
-export default MovieCategories
+export default Categories

@@ -4,7 +4,7 @@ import { BiSearchAlt2 } from "react-icons/bi"
 import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import Link from "next/link"
 
-const NavBar = () => {
+const Genres = () => {
   const [genres, setGenres] = useState([])
   const [isGenresDropdownOpen, setIsGenresDropdownOpen] = useState(false)
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
@@ -28,22 +28,9 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="flex justify-around items-center px-4 py-2 sticky top-0 z-10">
-      <div className="md:hidden">
-        <button onClick={toggleMobileMenu}>
-          {openMobileMenu ? (
-            <AiOutlineCloseCircle size={38} />
-          ) : (
-            <AiOutlineMenu size={38} />
-          )}
-        </button>
-      </div>
-      <ul
-        className={`md:flex flex-row space-x-20 ${
-          openMobileMenu ? "flex" : "hidden"
-        }`}
-      >
-        <li className="absolute bg-transparent">
+    <nav>
+      <ul>
+        <li className="absolute right-24">
           <a href="#" onClick={toggleGenresDropdown}>
             Genres
           </a>
@@ -57,14 +44,9 @@ const NavBar = () => {
             </ul>
           )}
         </li>
-        <li>
-          <Link href="#" onClick={toggleMoviesDropdown}>
-            Movies
-          </Link>
-        </li>
       </ul>
     </nav>
   )
 }
 
-export default NavBar
+export default Genres
