@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
 import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import Link from "next/link"
@@ -7,13 +6,9 @@ import Genres from "./Genres"
 import Categories from "./Categories"
 
 const NavBar = () => {
-  const [genres, setGenres] = useState([])
-  const [movies, setMovies] = useState([])
-  const [isGenresDropdownOpen, setIsGenresDropdownOpen] = useState(false)
-  const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false)
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState("")
 
+  // Function to toggle the mobile menu
   const toggleMobileMenu = () => {
     setOpenMobileMenu(!openMobileMenu)
   }
@@ -30,10 +25,12 @@ const NavBar = () => {
         </button>
       </div>
       <ul className="flex flex-wrap overflow-hidden gap-x-8">
+        {/* Render the Genres component */}
         <div className="absolute">
           <Genres />
         </div>
-        <div>
+        {/* Render the Categories component */}
+        <div className="absolute">
           <Categories />
         </div>
         <div>
