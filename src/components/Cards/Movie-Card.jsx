@@ -1,4 +1,4 @@
-function SmallCard() {
+function MovieCard() {
   return (
     <>
       <div className="card w-full bg-base-100 shadow-xl image-full">
@@ -18,4 +18,4 @@ function SmallCard() {
     </>
   )
 }
-export default SmallCard
+export default MovieCard

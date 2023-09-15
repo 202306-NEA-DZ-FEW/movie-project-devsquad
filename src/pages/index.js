@@ -1,30 +1,40 @@
-import Image from "next/image"
-import MovieLoop from "@/components/Card/Loop"
+import MovieLoop from "@/components/Cards/Loop"
+import MovieCard from "@/components/Cards/Movie-Card"
+import SideCard from "@/components/Cards/Side-Card"
 import Navbar from "@/components/Navbar/Navbar"
-import SmallCard from "@/components/Card/Small-Card"
-import SideCard from "@/components/Card/Side-Card"
+
 export default function Home() {
   return (
     <>
       <Navbar />
       <MovieLoop />
-      <div className="trending-section mt-4 grid grid-rows-1 gap-6">
-        <h1 className="text-center text-3xl mt-4">Trending Movies</h1>
-        <div className="grid grid-cols-2   gap-4 md:grid-cols-3">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+      <h1 className="text-center text-3xl mt-8 mb-8">Trending Movies</h1>
+      <div className="trending-section mt-4 grid grid-rows-1 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
         </div>
       </div>
-      <h1 className="text-start text-3xl mt-20 mb-8">Latest Movies</h1>
-      <div className="latest-section mt-4 grid grid-cols-3 gap-6">
-        <div className="grid col-span-2 gap-4 md:grid-cols-4">
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
-          <SmallCard />
+      <h1 className=" w-full text-center md:w-full md:text-center lg:w-3/4 lg:text-end text-3xl mt-20 mb-8 bg-primary">
+        Latest Movies
+      </h1>
+      <div className="latest-section mt-4 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 col-span-4 md:col-span-4 lg:col-span-3 gap-4">
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
+          <MovieCard />
         </div>
-        <div className="side-movies grid grid-cols-1 h-1/2 gap-3">
+        <div className="side-movies col-span-4 md:col-span-4 lg:col-span-1 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 h-1/2 gap-3">
+          <h1 className="text-center md:text-center lg:text-start text-3xl mb-8">
+            Upcoming Movies
+          </h1>
           <SideCard />
           <SideCard />
           <SideCard />

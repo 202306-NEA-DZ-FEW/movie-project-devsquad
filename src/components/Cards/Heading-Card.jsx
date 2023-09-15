@@ -1,4 +1,4 @@
-const MovieCard = ({ movie }) => {
+const HeadingCard = ({ movie }) => {
   return (
     <>
       <div className="card card-side bg-base-100 shadow-xl h-full w-full">
@@ -12,8 +12,8 @@ const MovieCard = ({ movie }) => {
           </div>
           <div className="p-4 lg:p-6 flex flex-col justify-center w-full lg:w-full">
             <h1 className="text-6xl mb-3">Upcoming</h1>
-            <h2 className="card-title">{movie.original_title}</h2>
-            <p>{movie.overview}</p>
+            <h2 className="card-title text-4xl">{movie.original_title}</h2>
+            <p className="text-1xl">{movie.overview}</p>
             <p>Popularity: {movie.popularity}</p>
             <p>Release Date: {movie.release_date}</p>
             <p>Vote Average: {movie.vote_average}</p>
@@ -27,4 +27,4 @@ const MovieCard = ({ movie }) => {
   )
 }
 
-export default MovieCard
+export default HeadingCard

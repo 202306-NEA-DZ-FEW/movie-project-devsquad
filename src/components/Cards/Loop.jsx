@@ -1,7 +1,7 @@
 // components/MovieCarousel.js
 import { useState, useEffect } from "react"
 import { fetcher } from "@/utils/API"
-import MovieCard from "./Card"
+import HeadingCard from "./Heading-Card"
 
 const MovieLoop = () => {
   const [movies, setMovies] = useState([])
@@ -27,9 +27,12 @@ const MovieLoop = () => {
   }, [movies])
 
   return (
-    <div className="movie-card-loop">
+    <div className="heading-card-loop">
       {movies.length > 0 && (
-        <MovieCard movie={movies[currentIndex]} key={movies[currentIndex].id} />
+        <HeadingCard
+          movie={movies[currentIndex]}
+          key={movies[currentIndex].id}
+        />
       )}
     </div>
   )
