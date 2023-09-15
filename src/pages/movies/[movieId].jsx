@@ -54,6 +54,36 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
           </p>
         </div>
       </div>
+
+      {/* Related Movies Section */}
+      <div className="mt-10">
+        <h2 className="text-2xl font-bold mb-4">Related Movies</h2>
+        <div className="flex flex-wrap justify-around">
+          {relatedData.results.map((movie, index) => (
+            <div
+              key={index}
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4"
+            >
+              <Link href={`/movie/${movie.id}`}>
+                <a>
+                  <div className="flex flex-col items-center max-w-sm mx-auto">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt={movie.title}
+                      width={500}
+                      height={300}
+                    />
+                    <div className="mt-3 text-center">
+                      <h1 className="text-xl font-bold">{movie.title}</h1>
+                      <p className="mt-2">{movie.release_date}</p>
+                    </div>
+                  </div>
+                </a>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
