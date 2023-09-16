@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa"
 function Footer() {
   return (
     <>
-      <footer className="footer p-10 bg-neutral text-neutral-content">
+      <footer className=" rounded footer p-10 bg-gradient-to-r from-sky-950 to-slate-950 text-neutral-content">
         <aside>
           <svg
             width="50"
