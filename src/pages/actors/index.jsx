@@ -1,7 +1,8 @@
 import React from "react"
-import daisyui from "daisyui"
+
 import Link from "next/link"
-import { data } from "autoprefixer"
+
+import { fetcher } from "@/utils/API"
 
 function Actors({ popularActors }) {
   console.log(popularActors.results)
@@ -38,22 +39,11 @@ function Actors({ popularActors }) {
 }
 
 export async function getStaticProps() {
-  const url =
-    "https://api.themoviedb.org/3/person/popular?language=en-US&page=1"
+  const popularActors = await fetcher("person/popular?language=en-US&page=1") // Call the fetcher function with the API route
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmZlZjIwMmQ0MjFhNTYxNzg2YzU3ODQ5YzRhZmJjMyIsInN1YiI6IjY1MDFiNjcxNmEyMjI3MDBjM2I2YWIxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XJjyQmVwx0bDppP1jD0WnR_WV0eH7kBhZBRVRQFEMhQ",
-    },
-  }
-  const response = await fetch(url, options)
-  const data = await response.json()
   return {
     props: {
-      popularActors: data,
+      popularActors,
     },
   }
 }
