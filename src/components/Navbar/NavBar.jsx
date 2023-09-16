@@ -2,13 +2,24 @@ import React, { useState, useEffect } from "react"
 import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
 import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
-
 const NavBar = () => {
   const [genres, setGenres] = useState([])
-  const [movies, setMovies] = useState([])
+  const [movieResults, setMovieResults] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
+  const [actors, setActors] = useState([])
   const [isGenresDropdownOpen, setIsGenresDropdownOpen] = useState(false)
   const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false)
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
+  const fetchActors = async () => {
+    try {
+      const actor = await fetcher(
+        "person/popular?api_key=12fef202d421a561786c57849c4afbc3",
+      )
+      setActors(actor.results)
+    } catch (error) {
+      console.error("Failed to fetch movies:", error)
+    }
+  }
 
   useEffect(() => {
     async function fetchGenres() {
@@ -27,15 +38,18 @@ const NavBar = () => {
         const data = await fetcher(
           "movie/now_playing?api_key=12fef202d421a561786c57849c4afbc3",
         )
-        setMovies(data.results)
+        setMovieResults(data.results)
       } catch (error) {
         console.error("Failed to fetch movies:", error)
       }
     }
 
+    fetchActors()
     fetchGenres()
     fetchMovies()
   }, [])
+  console.log(actors)
+  console.log(movieResults)
 
   const toggleGenresDropdown = () => {
     setIsGenresDropdownOpen(!isGenresDropdownOpen)
@@ -48,10 +62,16 @@ const NavBar = () => {
   const toggleMobileMenu = () => {
     setOpenMobileMenu(!openMobileMenu)
   }
+  const itemsToDisplay = actors.filter((item) => {
+    return item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  })
+  // const itemsToDisplayMovies = movieResults.filter(item => {
+  //   return item.name.toLowerCase().includes(searchQuery.toLowerCase());
+  // });
 
   return (
-    <nav className="flex justify-between items-center px-4 py-2 sticky top-0 z-10">
-      <div className="md:hidden">
+    <nav className="flex justify-between items-center px-4 py-2 sticky top-0 z-10 ">
+      <div className="md:hidden absolute right-0">
         <button onClick={toggleMobileMenu}>
           {openMobileMenu ? (
             <AiOutlineCloseCircle size={38} />
@@ -61,16 +81,16 @@ const NavBar = () => {
         </button>
       </div>
       <ul
-        className={`md:flex flex-row space-x-20 ${
-          openMobileMenu ? "flex" : "hidden"
-        }`}
+        className={` ${
+          openMobileMenu ? "block" : "hidden"
+        } flex sm:gap-4 flex-col sm:flex-row gap-16`}
       >
         <li>
           <a href="#" onClick={toggleGenresDropdown}>
             Genres
           </a>
           {isGenresDropdownOpen && (
-            <ul>
+            <ul className="absolute">
               {genres.map((genre) => (
                 <li key={genre.id}>
                   <a href="#">{genre.name}</a>
@@ -84,7 +104,7 @@ const NavBar = () => {
             Movies
           </a>
           {isMoviesDropdownOpen && (
-            <ul>
+            <ul className="absolute">
               <li>
                 <a href="#">Top Rated</a>
               </li>
@@ -111,7 +131,9 @@ const NavBar = () => {
             <input
               type="search"
               placeholder="type here"
+              value={searchQuery}
               className="w-full p-2 rounded-full bg-slate-800"
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <button
               className="p-2 bg-slate-900 rounded-full "
@@ -121,12 +143,23 @@ const NavBar = () => {
                 left: "100%",
                 transform: "translate(-130%, -80%)",
               }}
+              onClick={() => {
+                fetchActors
+                fetchMovies
+              }}
             >
               <BiSearchAlt2 size={20} />
             </button>
           </form>
         </li>
       </ul>
+      {/* <ul>
+      {itemsToDisplay.map(actor => (
+        <li key={actor.id}>{actor.name}</li>
+      ))}
+
+
+      </ul> */}
     </nav>
   )
 }
