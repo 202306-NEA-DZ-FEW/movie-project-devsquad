@@ -14,8 +14,21 @@ const MovieList = () => {
         if (genre) {
           url += `&with_genres=${genre}`
         }
-        if (category) {
-          url += `&sort_by=${category}`
+        if (category === "popular") {
+          url =
+            "https://api.themoviedb.org/3/movie/popular?api_key=12fef202d421a561786c57849c4afbc3"
+        } else if (category === "top_rated") {
+          url =
+            "https://api.themoviedb.org/3/movie/top_rated?api_key=12fef202d421a561786c57849c4afbc3"
+        } else if (category === "latest") {
+          url =
+            "https://api.themoviedb.org/3/movie/latest?api_key=12fef202d421a561786c57849c4afbc3"
+        } else if (category === "now_playing") {
+          url =
+            "https://api.themoviedb.org/3/movie/now_playing?api_key=12fef202d421a561786c57849c4afbc3"
+        } else if (category === "upcoming") {
+          url =
+            "https://api.themoviedb.org/3/movie/upcoming?api_key=12fef202d421a561786c57849c4afbc3"
         }
         const response = await fetch(url)
         const data = await response.json()
@@ -29,17 +42,20 @@ const MovieList = () => {
   }, [genre, category])
 
   return (
-    <div>
-      <h1>Movie List</h1>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <h3>{movie.title}</h3>
-            <p>{movie.overview}</p>
+    <div className="bg-gray-900 text-white">
+      <h1 className="text-4xl font-bold mb-4">Movie List</h1>
+      <ul className="grid grid-cols-5 gap-4">
+        {movies?.map((movie) => (
+          <li key={movie.id} className="bg-gray-800 p-2 rounded-lg">
+            {movie.poster_path && (
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                className="w-full mb-2 rounded-lg"
+              />
+            )}
+            <h3 className="text-lg font-bold">{movie.title}</h3>
+            <p className="text-gray-300">{movie.overview}</p>
           </li>
         ))}
       </ul>
