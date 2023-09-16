@@ -30,7 +30,7 @@ const Genres = () => {
             Genres
           </a>
           {isGenresDropdownOpen && (
-            <ul>
+            <ul className="bg-white text-black h-100 rounded-md">
               {/* Render each genre as a list item */}
               {genres?.map((genre) => (
                 <li key={genre.id}>

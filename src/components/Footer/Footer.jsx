@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons" // Import Font Awesome icons
 
 const Footer = () => {
-  const users = [
+  const githubUsernames = [
     "farouk26",
     "hasnahadd",
     "mouloud247",
@@ -9,34 +11,49 @@ const Footer = () => {
     "takidilmi",
     "Halla24",
   ]
-  const usersLinkedin = [
+  const linkedinUsernames = [
     "manel-hasna-haddoud-aa5095278",
     "mouloud-mecheter-4a3701166",
+    "faroukisme",
+    "takidilmi",
+    "halla-hamidi-989197229",
   ]
 
-  const [userData, setUserData] = useState([])
+  const [githubUserData, setGithubUserData] = useState([])
+  const [linkedinUserData, setLinkedinUserData] = useState([])
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchGithubData = async () => {
       try {
-        const promises = users.map(async (user) => {
-          const response = await fetch(`https://api.github.com/users/${user}`)
-          const data = await response.json()
-          return {
-            name: data.name,
-            avatarUrl: data.avatar_url,
-            url: data.html_url,
-          }
-        })
+        const promises = githubUsernames.map((username) =>
+          fetch(`https://api.github.com/users/${username}`).then((response) =>
+            response.json(),
+          ),
+        )
         const userData = await Promise.all(promises)
-        setUserData(userData)
+        setGithubUserData(userData)
       } catch (error) {
-        console.error("Error:", error)
+        console.error("Error fetching GitHub data:", error)
       }
     }
 
-    fetchData()
-  }, [])
+    fetchGithubData()
+  })
+
+  useEffect(() => {
+    const fetchLinkedinData = async () => {
+      try {
+        const promises = linkedinUsernames.map((username) =>
+          fetchLinkedInProfile(username),
+        )
+        await Promise.all(promises)
+      } catch (error) {
+        console.error("Error fetching LinkedIn data:", error)
+      }
+    }
+
+    fetchLinkedinData()
+  })
 
   async function fetchLinkedInProfile(username) {
     const encodedUser = encodeURIComponent(username)
@@ -54,36 +71,50 @@ const Footer = () => {
       const result = await response.json()
       const linkedinUrl = result.data.linkedin_url
       console.log(`LinkedIn Profile URL for ${username}:`, linkedinUrl)
+      // Update the state for LinkedIn data if needed
     } catch (error) {
       console.error(`Error fetching LinkedIn profile for ${username}:`, error)
     }
   }
 
-  async function fetchAllLinkedInProfiles() {
-    for (const username of usersLinkedin) {
-      await fetchLinkedInProfile(username)
-    }
-  }
-
-  useEffect(() => {
-    fetchAllLinkedInProfiles()
-  }, [])
-
   return (
-    <div>
-      <ul>
-        {userData.map((user, index) => (
-          <li key={index}>
-            <div>
-              <h3>{user.name}</h3>
-              <img src={user.avatarUrl} alt={`Avatar of ${user.name}`} />
-              <p>
-                URL: <a href={user.url}>{user.url}</a>
-              </p>
+    <div className="bg-black p-4">
+      <div className="mb-4">
+        <h2 className="text-white text-2xl mb-2">GitHub Users</h2>
+        <ul>
+          {githubUserData.map((user, index) => (
+            <li
+              key={index}
+              className="text-white border-b border-gray-600 py-2"
+            >
+              <div>
+                <h3 className="text-red-500">{user.name}</h3>
+
+                <p>
+                  URL:{" "}
+                  <a href={user.html_url} className="text-red-500">
+                    {user.html_url}
+                  </a>
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 className="text-white text-2xl mb-2">LinkedIn Users</h2>
+        <div className="mt-4">
+          {linkedinUsernames.map((username, index) => (
+            <div key={index} className="flex items-center">
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                className="text-red-500 mr-2"
+              />
+              <p className="text-white">{`LinkedIn Profile for ${username}`}</p>
             </div>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
