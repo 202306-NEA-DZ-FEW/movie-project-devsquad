@@ -98,7 +98,7 @@ function ActorDetailsPage() {
             <Link key={movie.name} href={`/movies/movieId?id=${movie.id}`}>
               <div
                 key={movie.id}
-                className="card bg-base-100 shadow-lg"
+                className="card bg-base-100 shadow-lg hover:scale-105 hover:shadow-lg object-cover mt-2 mb-2 rounded-md transition-all duration-500 ease-in-out cursor-pointer hover:opacity-60"
                 style={{
                   backgroundImage: "url(/imageBackground.jpg)",
                   border: "2px solid white",

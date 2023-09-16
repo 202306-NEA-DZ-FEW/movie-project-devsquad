@@ -18,7 +18,7 @@ function Actors({ popularActors }) {
     <main style={{ backgroundColor: "#35393e" }}>
       <div
         className="container mx-auto mt-5"
-        style={{ marginTop: 0, paddingTop: 20 }}
+        style={{ marginTop: 0, paddingTop: 20, paddingBottom: 20 }}
       >
         <h1
           className="text-3xl font-semibold mb-5"
@@ -32,13 +32,13 @@ function Actors({ popularActors }) {
             <Link key={actor.name} href={`/actors/actorId?id=${actor.id}`}>
               <div
                 key={actor.name}
-                className="bg-white p-4 rounded shadow"
+                className="bg-white p-4 rounded shadow hover:scale-105 hover:shadow-lg object-cover mt-2 mb-2 rounded-md transition-all duration-500 ease-in-out cursor-pointer hover:opacity-60"
                 style={{ backgroundImage: "url(/imageBackground.jpg)" }}
               >
                 <img
                   src={"https://image.tmdb.org/t/p/w500" + actor.profile_path}
                   alt={actor.name}
-                  className="w-full h-auto rounded-md mb-2"
+                  className="w-full h-auto rounded-md mb-2 "
                   style={{ border: "2px solid white" }}
                 />
                 <p className="text-lg font-semibold" style={{ color: "white" }}>
