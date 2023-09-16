@@ -34,7 +34,7 @@ const Genres = () => {
               {/* Render each genre as a list item */}
               {genres?.map((genre) => (
                 <li key={genre.id}>
-                  <Link href="#">{genre.name}</Link>
+                  <Link href={`/genres/${genre.id}`}>{genre.name}</Link>
                 </li>
               ))}
             </ul>
