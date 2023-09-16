@@ -1,46 +1,67 @@
+import { useState, useEffect } from "react"
 import MovieLoop from "@/components/Cards/Loop"
 import MovieCard from "@/components/Cards/Movie-Card"
 import SideCard from "@/components/Cards/Side-Card"
-import Navbar from "@/components/Navbar/Navbar"
+import { fetcher, fetchData } from "@/utils/API"
 
-export default function Home() {
+export default function Home({ latestMovies, trendingMovies, popularSeries }) {
   return (
     <>
-      <Navbar />
       <MovieLoop />
-      <h1 className="text-center text-3xl mt-8 mb-8">Trending Movies</h1>
-      <div className="trending-section mt-4 grid grid-rows-1 gap-4">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-        </div>
-      </div>
-      <h1 className=" w-full text-center md:w-full md:text-center lg:w-3/4 lg:text-end text-3xl mt-20 mb-8 bg-primary">
+      <h1 className="w-2/4 bg-primary text-center md:text-center lg:text-end ml-auto text-3xl mt-10 mb-10">
         Latest Movies
       </h1>
-      <div className="latest-section mt-4 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 col-span-4 md:col-span-4 lg:col-span-3 gap-4">
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
+      <div className="first-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+        {latestMovies?.results.slice(0, 4).map((movie) => {
+          return (
+            <div key={movie.id}>
+              <MovieCard {...movie} />
+            </div>
+          )
+        })}
+      </div>
+      <h1 className="w-2/4 bg-primary text-center md:text-center lg:text-start mr-auto text-3xl mt-10 mb-10">
+        TRENDING
+      </h1>
+      <div className="wrapper grid grid-cols-8 gap-4">
+        <div className="second-container col-span-8 md:col-span-6 lg:col-span-6">
+          <div className="latest-movies-section grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {trendingMovies?.results.slice(0, 6).map((movie) => {
+              return (
+                <div key={movie.id}>
+                  <MovieCard {...movie} />
+                </div>
+              )
+            })}
+          </div>
         </div>
-        <div className="side-movies col-span-4 md:col-span-4 lg:col-span-1 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 h-1/2 gap-3">
-          <h1 className="text-center md:text-center lg:text-start text-3xl mb-8">
-            Upcoming Movies
-          </h1>
-          <SideCard />
-          <SideCard />
-          <SideCard />
-          <SideCard />
+        <div className="side-container col-span-8 md:col-span-2 lg:col-span-2">
+          <div className="popular-all grid grid-cols-1 gap-4">
+            {popularSeries?.results.slice(0, 5).map((series) => {
+              return (
+                <div key={series.id}>
+                  <SideCard {...series} />
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </>
   )
+}
+
+//Fetch Side
+export async function getStaticProps() {
+  const latestMoviesData = await fetcher("trending/movie/day")
+  const trendingMoviesData = await fetcher("movie/top_rated")
+  const popularSeriesData = await fetcher("tv/popular")
+
+  return {
+    props: {
+      latestMovies: latestMoviesData,
+      trendingMovies: trendingMoviesData,
+      popularSeries: popularSeriesData,
+    },
+  }
 }
