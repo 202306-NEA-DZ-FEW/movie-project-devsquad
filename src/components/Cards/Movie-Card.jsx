@@ -10,7 +10,7 @@ function MovieCard({ title, release_date, overview, popularity, poster_path }) {
             alt="Movie"
           />
         </figure>
-        <div className="card-body grid grid cols-4 p-0">
+        <div className="card-body grid cols-4 p-0">
           <h2 className="card-title col-span-4 ml-2 mt-2 text-3xl">
             Title: {title}
           </h2>

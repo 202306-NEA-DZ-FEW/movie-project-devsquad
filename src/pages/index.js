@@ -8,7 +8,7 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
   return (
     <>
       <MovieLoop />
-      <h1 className="rounded pr-2 pt-1 pb-1 w-full md:w-full lg:w-full text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-500 bg-primary ml-auto text-3xl mt-10 mb-10">
+      <h1 className="rounded pr-2 pt-1 pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-500 bg-primary ml-auto text-3xl mt-10 mb-10">
         <strong>LATEST MOVIES</strong>
       </h1>
       <div className="first-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
