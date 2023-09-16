@@ -4,8 +4,21 @@ import { BiSearchAlt2 } from "react-icons/bi"
 import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 
 const SearchBar = () => {
+  {
+    /*state for trackig the type of the user */
+  }
   const [searchQuery, setSearchQuery] = useState("")
+  {
+    /*state for displaying  the actor  */
+  }
+
   const [actors, setActors] = useState([])
+  {
+    /*state for displaying  the movies  */
+  }
+
+  const [movieResults, setMovieResults] = useState([])
+
   const fetchActors = async () => {
     try {
       const actor = await fetcher(
@@ -16,27 +29,43 @@ const SearchBar = () => {
       console.error("Failed to fetch actors:", error)
     }
   }
-
-  useEffect(() => {
-    fetchActors()
-  }, [])
-
-  const handleSearch = async () => {
+  async function fetchMovies() {
     try {
       const data = await fetcher(
-        `search/actor?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
+        "movie/now_playing?api_key=12fef202d421a561786c57849c4afbc3",
       )
-      setActors(data.results)
+      setMovieResults(data.results)
     } catch (error) {
-      console.error("Failed to fetch search results:", error)
+      console.error("Failed to fetch movies:", error)
     }
   }
-  const itemsToDisplay = actors.filter((item) => {
-    return item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  useEffect(() => {
+    fetchActors()
+    fetchMovies()
+  }, [])
+  const handleSearch = async (e) => {
+    e.preventDefault()
+    await fetchActors()
+    await fetchMovies()
+  }
+
+  // console.log(movieResults);
+  // console.log(actors);
+
+  {
+    /*items that display based on the user input in search field */
+  }
+
+  const itemsToDisplay = [...actors, ...movieResults].filter((item) => {
+    if (item.name) {
+      return item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    } else if (item.title) {
+      return item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    }
+    return false
   })
-  // {itemsToDisplay.map((actor) => (
-  //   console.log(actor.name)
-  // ))}
+
+  console.log(itemsToDisplay)
 
   return (
     <div>
@@ -56,14 +85,15 @@ const SearchBar = () => {
             left: "100%",
             transform: "translate(-130%, -80%)",
           }}
-          onClick={fetchActors}
+          onClick={handleSearch}
         >
           <BiSearchAlt2 size={20} />
         </button>
       </form>
       {/* <ul>
-        {itemsToDisplay.map((actor) => (
- <li key={actor.id}>{actor.name}</li>))}
+      {itemsToDisplay.map((item) => (
+          <li key={item.id}>{item.name}{item.title}</li>
+        ))}
       </ul> */}
     </div>
   )

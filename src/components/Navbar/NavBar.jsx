@@ -15,10 +15,6 @@ const NavBar = () => {
     setOpenMobileMenu(!openMobileMenu)
   }
 
-  // const itemsToDisplayMovies = movieResults.filter(item => {
-  //   return item.name.toLowerCase().includes(searchQuery.toLowerCase());
-  // });
-
   return (
     <nav className="flex justify-even  px-4 py-2 sticky top-0 z-10">
       <div className="md:hidden">
