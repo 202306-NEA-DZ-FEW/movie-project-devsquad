@@ -48,8 +48,8 @@ const MovieList = () => {
       <ul className="grid grid-cols-5 gap-4">
         {movies?.map((movie) => (
           <li key={movie.id} className="bg-gray-800 p-2 rounded-lg">
-            <Link href={`/[movieId]?movieId=${movie.id}`}>
-              <Link href={`/[movieId]?movieId=${movie.id}`}>
+            <Link href={`/movies/${movie.id}`}>
+              <Link href={`/movies/${movie.id}`}>
                 {movie.poster_path && (
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
