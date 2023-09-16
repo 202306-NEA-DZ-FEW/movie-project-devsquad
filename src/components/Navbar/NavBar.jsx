@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
 import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
-import Link from "next/link"
+import SearchBar from "./SearchBar"
 import Genres from "./Genres"
 import Categories from "./Categories"
+import Link from "next/link"
 
 const NavBar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
@@ -36,26 +38,9 @@ const NavBar = () => {
         <div>
           <Link href="#">Actors</Link>
         </div>
-        <li>
-          <form className="w-[300px] relative">
-            <input
-              type="search"
-              placeholder="type here"
-              className="w-full p-2 rounded-full bg-slate-800"
-            />
-            <button
-              className="p-2 bg-slate-900 rounded-full "
-              style={{
-                position: "absolute",
-                top: "75%",
-                left: "100%",
-                transform: "translate(-130%, -80%)",
-              }}
-            >
-              <BiSearchAlt2 size={20} />
-            </button>
-          </form>
-        </li>
+        <div>
+          <SearchBar />
+        </div>
       </ul>
     </nav>
   )
