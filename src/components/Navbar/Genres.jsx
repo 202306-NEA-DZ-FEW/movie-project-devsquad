@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react"
+import { useRouter } from "next/router"
 import { fetcher } from "@/utils/API"
 import Link from "next/link"
 
 const Genres = () => {
   const [genres, setGenres] = useState([])
   const [isGenresDropdownOpen, setIsGenresDropdownOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
-    // Fetch genres data from the API
     async function fetchGenres() {
       const data = await fetcher(
-        "genre/movie/list?api_key=12fef202d421a561786c57849c4afbc3",
+        `genre/movie/list?api_key=12fef202d421a561786c57849c4afbc3`,
       )
       setGenres(data.genres)
     }
@@ -18,8 +19,11 @@ const Genres = () => {
   }, [])
 
   const toggleGenresDropdown = () => {
-    // Toggle the state of the genres dropdown
     setIsGenresDropdownOpen(!isGenresDropdownOpen)
+  }
+
+  const handleGenreClick = (genreId) => {
+    router.push(`/movies?genre=${genreId}`)
   }
 
   return (
@@ -31,10 +35,13 @@ const Genres = () => {
           </a>
           {isGenresDropdownOpen && (
             <ul>
-              {/* Render each genre as a list item */}
               {genres?.map((genre) => (
                 <li key={genre.id}>
-                  <Link href={`/genres/${genre.id}`}>{genre.name}</Link>
+                  <Link href={`/movies?genre=${genre.id}`}>
+                    <Link href="#" onClick={() => handleGenreClick(genre.id)}>
+                      {genre.name}
+                    </Link>
+                  </Link>
                 </li>
               ))}
             </ul>

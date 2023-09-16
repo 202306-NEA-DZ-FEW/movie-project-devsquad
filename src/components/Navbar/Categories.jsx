@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("")
   const [movies, setMovies] = useState([])
   const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     // Fetch movies data based on the selected category
@@ -28,6 +30,8 @@ const Categories = () => {
   const handleCategoryChange = (category) => {
     // Update the selected category
     setSelectedCategory(category)
+    // Navigate to the MovieList page with the selected category as a query parameter
+    router.push(`/movies?category=${category}`)
   }
 
   const toggleMoviesDropdown = () => {
@@ -37,7 +41,7 @@ const Categories = () => {
 
   return (
     <>
-      <div className="absolute right-6">
+      <div className="absolute ... right-6">
         <a href="#" onClick={toggleMoviesDropdown}>
           Movies
         </a>
@@ -87,7 +91,14 @@ const Categories = () => {
           </ul>
         )}
       </div>
-      {/* <div>
+    </>
+  )
+}
+
+export default Categories
+
+{
+  /* <div>
         {movies.map((movie) => (
           <div key={movie.id}>
             {movie.title}
@@ -98,9 +109,5 @@ const Categories = () => {
             />
           </div>
         ))}
-      </div> */}
-    </>
-  )
+      </div> */
 }
-
-export default Categories
