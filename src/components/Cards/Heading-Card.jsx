@@ -4,7 +4,7 @@ const HeadingCard = ({ movie }) => {
   }
   return (
     <>
-      <div className="card card-side bg-base-100 shadow-xl h-full w-full transition-opacity duration-500 ease-in-out">
+      <div className="card card-side bg-sky-950 shadow-xl h-full w-full transition-opacity duration-500 ease-in-out">
         <div className="flex flex-col lg:flex-row w-full">
           <div className="lg:h-96">
             <img
