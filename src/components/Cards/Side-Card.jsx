@@ -4,7 +4,7 @@ function SideCard(series) {
   const { name, media_type, first_air_date, vote_average, poster_path } = series
   return (
     <>
-      <div className="card card-side h-36 bg-slate-800 shadow-xl">
+      <div className="card card-side h-36 bg-gradient-to-r from-sky-950 from-10% via-indigo-950 via-10% to-slate-500 shadow-xl">
         <figure className="max-h-full w-1/2 object-cover">
           <img
             src={`https://image.tmdb.org/t/p/w500/` + poster_path}
