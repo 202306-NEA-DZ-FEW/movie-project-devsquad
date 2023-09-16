@@ -3,6 +3,7 @@ import daisyui from "daisyui"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { data } from "autoprefixer"
+import Link from "next/link"
 
 function ActorDetailsPage() {
   const router = useRouter()
@@ -39,7 +40,7 @@ function ActorDetailsPage() {
     // Fetch related movies and set them in the state
     fetcher(id)
       .then((data) => {
-        setRelatedMovies(data.cast) // Assuming 'data.cast' contains the related movies
+        setRelatedMovies(data.cast)
       })
       .catch((error) => {
         // Handle any errors
@@ -47,23 +48,8 @@ function ActorDetailsPage() {
       })
   }, [id])
 
-  /*function fiveMovies(data) {
-        if (data) {
-            const fiveRelatedMovies = [];
-
-            for (let i = 0; i < 5; i++) {
-
-                fiveRelatedMovies.push(data[i]);
-            }
-            return fiveRelatedMovies;
-
-        } else {
-            return null
-        }
-    }*/
-
   return (
-    <>
+    <main style={{ backgroundColor: "#35393e" }}>
       <div className="container mx-auto p-4">
         <div className="lg:flex">
           {/* Actor Image (25% of screen width) */}
@@ -75,6 +61,7 @@ function ActorDetailsPage() {
                 }
                 alt="Actor Image"
                 className="w-full h-full object-cover"
+                style={{ border: "3px solid white" }}
               />
             </div>
           </div>
@@ -100,7 +87,6 @@ function ActorDetailsPage() {
                   <h2 className="card-title">Biography</h2>
                   <p>{actorData?.biography}</p>
                 </div>
-                {/* Any additional content can be added here */}
               </div>
             </div>
           </div>
@@ -108,26 +94,46 @@ function ActorDetailsPage() {
       </div>
 
       {/* Related Movies*/}
-      <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-4">Related Movies</h2>
+      <div
+        className="mt-8"
+        style={{ marginLeft: 91, marginRight: 91, marginBottom: 20 }}
+      >
+        <h2 className="text-2xl font-semibold mb-4" style={{ color: "white" }}>
+          Related Movies
+        </h2>
         <div className="grid lg:grid-cols-5 gap-4">
           {relatedMovies?.slice(0, 5).map((movie) => (
-            <div key={movie.id} className="card bg-base-100 shadow-lg">
-              <div className="card-body">
-                <h3 className="text-lg font-semibold">{movie.title}</h3>
-                <img
-                  src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
-                  alt="movie"
-                />
-                <p className="mt-2">Release Year: </p>
-                <p>{movie.release_date}</p>
-                {/* Add more movie details here */}
+            <Link key={movie.name} href={`/movies/movieId?id=${movie.id}`}>
+              <div
+                key={movie.id}
+                className="card bg-base-100 shadow-lg div-hover:hover"
+                style={{
+                  backgroundImage: "url(/imageBackground.jpg)",
+                  border: "2px solid white",
+                }}
+              >
+                <div className="card-body">
+                  <h3
+                    className="text-lg font-semibold"
+                    style={{ color: "white" }}
+                  >
+                    {movie.title}
+                  </h3>
+                  <img
+                    src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
+                    alt="movie"
+                  />
+                  <p className="mt-2" style={{ color: "white" }}>
+                    Release Year:{" "}
+                  </p>
+                  <p style={{ color: "white" }}>{movie.release_date}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
-    </>
+    </main>
   )
 }
 
