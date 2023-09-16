@@ -65,7 +65,7 @@ const SearchBar = () => {
                 alt={searchResult.title}
                 className="w-24 h-auto"
               />
-              <p>{searchResult.title}</p>
+              {/* <p>{searchResult.title}</p> */}
             </Link>
           </Link>
         </div>

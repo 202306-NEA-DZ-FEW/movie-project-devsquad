@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { fetcher } from "@/utils/API"
 
@@ -47,15 +48,19 @@ const MovieList = () => {
       <ul className="grid grid-cols-5 gap-4">
         {movies?.map((movie) => (
           <li key={movie.id} className="bg-gray-800 p-2 rounded-lg">
-            {movie.poster_path && (
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                className="w-full mb-2 rounded-lg"
-              />
-            )}
-            <h3 className="text-lg font-bold">{movie.title}</h3>
-            <p className="text-gray-300">{movie.overview}</p>
+            <Link href={`/[movieId]?movieId=${movie.id}`}>
+              <Link href={`/[movieId]?movieId=${movie.id}`}>
+                {movie.poster_path && (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-full mb-2 rounded-lg"
+                  />
+                )}
+                <h3 className="text-lg font-bold">{movie.title}</h3>
+                <p className="text-gray-300">{movie.overview}</p>
+              </Link>
+            </Link>
           </li>
         ))}
       </ul>
