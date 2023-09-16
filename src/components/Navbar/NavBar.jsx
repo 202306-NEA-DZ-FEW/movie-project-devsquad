@@ -36,7 +36,7 @@ const NavBar = () => {
           <Categories />
         </div>
         <div>
-          <Link href="#">Actors</Link>
+          <Link href={`../../actors`}>Actors</Link>
         </div>
         <div>
           <SearchBar />
