@@ -1,8 +1,8 @@
 import Image from "next/image"
-import { useState } from "react"
 import Link from "next/link"
+import PropTypes from "prop-types"
 
-export default function MoviePage({ movieData, creditsData, relatedData }) {
+function MoviePage({ movieData, creditsData, relatedData }) {
   let director = "N/A"
   if (creditsData && creditsData.crew) {
     const directorData = creditsData.crew.find(
@@ -21,11 +21,12 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
   ) {
     productionCompany = movieData.production_companies[0].name
   }
+
   return (
     <div className="bg-F5FAFF text-white p-10">
-      <div className="mb-10 ">
+      <div className="mb-10">
         <Image
-          src={movieData.backdrop_path}
+          src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
           alt={movieData.title}
           width={200}
           height={300}
@@ -34,7 +35,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
       <div className="flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 mb-10 md:mb-0 md:pr-10">
           <Image
-            src={movieData.poster_path}
+            src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
             alt={movieData.title}
             width={500}
             height={600}
@@ -88,31 +89,45 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
   )
 }
 
+MoviePage.propTypes = {
+  movieData: PropTypes.object.isRequired,
+  creditsData: PropTypes.object.isRequired,
+  relatedData: PropTypes.object.isRequired,
+}
+
 export async function getServerSideProps(context) {
   const { movieId } = context.query
-  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`
-  const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`
-  const relatedUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US`
-  const options = {
-    headers: {
-      accept: "application/json",
-      authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmZlZjIwMmQ0MjFhNTYxNzg2YzU3ODQ5YzRhZmJjMyIsInN1YiI6IjY1MDFiNjcxNmEyMjI3MDBjM2I2YWIxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XJjyQmVwx0bDppP1jD0WnR_WV0eH7kBhZBRVRQFEMhQ",
-    },
-  }
-  const response = await fetch(url, options)
-  const creditsResponse = await fetch(creditsUrl, options)
-  const relatedResponse = await fetch(relatedUrl, options)
+  // const apiKey = process.env.MOVIE_DB_API_KEY;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&api_key=12fef202d421a561786c57849c4afbc3`
+  const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US&api_key=12fef202d421a561786c57849c4afbc3`
+  const relatedUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&api_key=12fef202d421a561786c57849c4afbc3`
 
-  const data = await response.json()
-  const creditsData = await creditsResponse.json()
-  const relatedData = await relatedResponse.json()
+  try {
+    const response = await fetch(url)
+    const creditsResponse = await fetch(creditsUrl)
+    const relatedResponse = await fetch(relatedUrl)
 
-  return {
-    props: {
-      movieData: data,
-      creditsData: creditsData,
-      relatedData: relatedData,
-    },
+    const movieData = await response.json()
+    const creditsData = await creditsResponse.json()
+    const relatedData = await relatedResponse.json()
+
+    return {
+      props: {
+        movieData,
+        creditsData,
+        relatedData,
+      },
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      props: {
+        movieData: {},
+        creditsData: {},
+        relatedData: {},
+      },
+    }
   }
 }
+
+export default MoviePage

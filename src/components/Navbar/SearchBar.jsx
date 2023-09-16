@@ -1,32 +1,35 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
 import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
+import Link from "next/link"
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("")
-  const [actors, setActors] = useState([])
+  const [searchResult, setSearchResult] = useState(null)
 
-  const fetchActors = async () => {
-    try {
-      const actor = await fetcher(
-        "person/popular?api_key=12fef202d421a561786c57849c4afbc3",
-      )
-      setActors(actor.results)
-    } catch (error) {
-      console.error("Failed to fetch actors:", error)
+  useEffect(() => {
+    const fetchSearchResult = async () => {
+      if (searchQuery.trim() !== "") {
+        try {
+          const response = await fetcher(
+            `search/movie?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
+          )
+          setSearchResult(response.results[0])
+        } catch (error) {
+          console.error("Failed to fetch search result:", error)
+        }
+      } else {
+        setSearchResult(null)
+      }
     }
-  }
 
-  const handleSearch = async () => {
-    try {
-      const data = await fetcher(
-        `search/actor?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
-      )
-      setActors(data.results)
-    } catch (error) {
-      console.error("Failed to fetch search results:", error)
-    }
+    fetchSearchResult()
+  }, [searchQuery])
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    // Perform search
   }
 
   return (
@@ -52,13 +55,35 @@ const SearchBar = () => {
           <BiSearchAlt2 size={20} />
         </button>
       </form>
-      <ul>
-        {actors.map((actor) => (
-          <li key={actor.id}>{actor.name}</li>
-        ))}
-      </ul>
+
+      {searchResult && (
+        <div className="absolute">
+          <Link href={`/movie/${searchResult.id}`}>
+            <Link href="#">
+              <img
+                src={`https://image.tmdb.org/t/p/w200${searchResult.poster_path}`}
+                alt={searchResult.title}
+                className="w-24 h-auto"
+              />
+              <p>{searchResult.title}</p>
+            </Link>
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
 
 export default SearchBar
+
+{
+  /* {selectedMovie && (
+        <div>
+          <h2>{selectedMovie.title}</h2>
+          <p>{selectedMovie.overview}</p>
+          <Link href={`/movie/${selectedMovie.id}`}>
+            <Link href="#">Go to Movie Page</Link>
+          </Link>
+        </div>
+      )} */
+}
