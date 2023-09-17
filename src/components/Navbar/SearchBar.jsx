@@ -72,9 +72,9 @@ const SearchBar = () => {
       <form className="relative">
         <input
           type="search"
-          placeholder="Type here"
+          placeholder="Search"
           value={searchQuery}
-          className="w-full p-2 rounded-full bg-slate-800"
+          className="w-full p-2 rounded-full bg-neutral-300 text-center"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button

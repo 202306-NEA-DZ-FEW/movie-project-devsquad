@@ -30,10 +30,13 @@ const Genres = () => {
           </Link>
           <div>
             {isGenresDropdownOpen && (
-              <ul className="absolute left-12 w-full h-28 px-4 py-2 text-base border border-transparent rounded-md appearance-none overflow-y-auto">
+              <ul className="absolute left-12 text-neutral-300 bg-gray-800 dropdown rounded p-4 top-0 w-64 h-38 overflow-y-auto">
                 {/* Render each genre as a list item */}
                 {genres?.map((genre) => (
-                  <li key={genre.id}>
+                  <li
+                    className="hover:bg-neutral-300 hover:text-slate-800 hover:rounded"
+                    key={genre.id}
+                  >
                     <Link href={`./`}>{genre.name}</Link>
                   </li>
                 ))}
