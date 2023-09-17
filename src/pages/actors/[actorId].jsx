@@ -105,16 +105,16 @@ function ActorDetailsPage() {
                 }}
               >
                 <div className="card-body">
+                  <img
+                    src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
+                    alt="movie"
+                  />
                   <h3
                     className="text-lg font-semibold"
                     style={{ color: "white" }}
                   >
                     {movie.title}
                   </h3>
-                  <img
-                    src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
-                    alt="movie"
-                  />
                   <p className="mt-2" style={{ color: "white" }}>
                     Release Year:{" "}
                   </p>
