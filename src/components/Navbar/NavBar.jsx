@@ -26,11 +26,11 @@ const NavBar = () => {
       </div>
       <ul className="hidden md:flex flex-wrap overflow-hidden gap-x-8">
         {/* Render the Genres component */}
-        <div className="absolute">
+        <div>
           <Genres />
         </div>
         {/* Render the Categories component */}
-        <div className="absolute">
+        <div>
           <Categories />
         </div>
         <div>
@@ -44,20 +44,21 @@ const NavBar = () => {
         isOpen={openMobileMenu}
         onRequestClose={toggleMobileMenu}
         contentLabel="Mobile Menu"
+        className="mobile-menu"
       >
-        <ul>
+        <ul className="absolute left-0 top-0 bg-transparent text-amber-500">
           {/* Render the Genres component */}
           <div>
             <SearchBar />
           </div>
           {/* Render the Categories component */}
-          <div>
+          <div className="text-amber-500">
             <Categories />
           </div>
-          <div>
+          <div className="text-amber-500">
             <Link href="#">Actors</Link>
           </div>
-          <div>
+          <div className="text-amber-500">
             <Genres />
           </div>
         </ul>

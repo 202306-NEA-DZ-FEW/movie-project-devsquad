@@ -25,12 +25,12 @@ const Genres = () => {
   return (
     <nav>
       <ul>
-        <li className="absolute right-24">
+        <li>
           <a href="#" onClick={toggleGenresDropdown}>
             Genres
           </a>
           {isGenresDropdownOpen && (
-            <ul className="bg-white text-black h-100 rounded-md">
+            <ul className="bg-transparent absolute text-amber-500 h-100 rounded-md">
               {/* Render each genre as a list item */}
               {genres?.map((genre) => (
                 <li key={genre.id}>

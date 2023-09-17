@@ -24,7 +24,7 @@ const Categories = () => {
   }
 
   return (
-    <div className="absolute right-6">
+    <div>
       <a href="#" onClick={toggleMoviesDropdown}>
         Movies
       </a>
@@ -32,7 +32,7 @@ const Categories = () => {
         <ul
           value={selectedCategory}
           onChange={(e) => handleCategoryChange(e.target.value)}
-          className="bg-white text-black h-100 rounded-md "
+          className="bg-transparent absolute text-amber-500 h-100 rounded-md "
         >
           {/* Render each category as a list item */}
           <li>

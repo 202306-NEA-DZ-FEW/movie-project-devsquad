@@ -7,6 +7,7 @@ const CustomModal = ({ isOpen, onRequestClose, children }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="Navigation Menu"
+      className="mobile-menu"
     >
       <div>{children}</div>
     </Modal>
