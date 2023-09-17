@@ -5,6 +5,7 @@ import Genres from "./Genres"
 import Categories from "./Categories"
 import Link from "next/link"
 import CustomModal from "./CustomModal"
+import Logo from "./Logo"
 
 const NavBar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
@@ -37,18 +38,33 @@ const NavBar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {/* <li><SearchBar /></li> */}
-            <li>
-              <p>Genres</p>
-            </li>
             <li>
               <Categories />
             </li>
+            <br></br>
             <li>
-              <Link href="#">Actors</Link>
+              <Link href={`./`}>Actors</Link>
             </li>
+            <br></br>
+            <Genres />
           </ul>
-          {/*           
+        </div>
+      </div>
+      <div className="navbar-center">
+        <Link href={`./`}>
+          <Logo />
+        </Link>
+      </div>
+      <div className="navbar-end ">
+        <SearchBar />
+      </div>
+    </nav>
+  )
+}
+
+export default NavBar
+{
+  /*           
           <div>
             <Genres />
           </div>
@@ -61,11 +77,5 @@ const NavBar = () => {
           </div>
           <div>
             <SearchBar />
-          </div> */}
-        </div>
-      </div>
-    </nav>
-  )
+          </div> */
 }
-
-export default NavBar

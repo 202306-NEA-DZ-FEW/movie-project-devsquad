@@ -78,7 +78,7 @@ const SearchBar = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
-          className="p-2 bg-slate-900 rounded-full"
+          className="p-2 bg-slate-900 rounded-full bg-opacity-50"
           style={{
             position: "absolute",
             top: "75%",
