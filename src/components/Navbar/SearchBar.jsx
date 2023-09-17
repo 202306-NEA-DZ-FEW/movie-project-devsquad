@@ -58,14 +58,13 @@ const SearchBar = () => {
 
       {searchResult && (
         <div className="absolute">
-          <Link href={`/movie/${searchResult.id}`}>
-            <Link href="#">
+          <Link href={`/movies/${searchResult.id}`}>
+            <Link href={`/movies/${searchResult.id}`}>
               <img
                 src={`https://image.tmdb.org/t/p/w200${searchResult.poster_path}`}
                 alt={searchResult.title}
                 className="w-24 h-auto"
               />
-              {/* <p>{searchResult.title}</p> */}
             </Link>
           </Link>
         </div>
