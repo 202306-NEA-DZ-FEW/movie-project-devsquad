@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+
 export function MovieCard({ movie }) {
   return (
     <a
@@ -24,6 +24,8 @@ export function MovieCard({ movie }) {
     </a>
   )
 }
+import Link from "next/link"
+
 export default function Home({ latestMovies }) {
   return (
     <div className="gap-4 overflow-x-scroll">
