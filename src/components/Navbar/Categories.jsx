@@ -41,12 +41,12 @@ const Categories = () => {
 
   return (
     <>
-      <div className="absolute ... right-6">
-        <a href="#" onClick={toggleMoviesDropdown}>
+      <div className=" ">
+        <Link href={`./`} onClick={toggleMoviesDropdown}>
           Movies
-        </a>
+        </Link>
         {isMoviesDropdownOpen && (
-          <ul>
+          <ul className="absolute left-12 text-white">
             {/* Render each category as a list item */}
             <li>
               <button

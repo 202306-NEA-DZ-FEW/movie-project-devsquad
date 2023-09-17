@@ -5,6 +5,9 @@ import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import Link from "next/link"
 
 const SearchBar = () => {
+  {
+    /*state for trackig the type of the user */
+  }
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResult, setSearchResult] = useState(null)
 
@@ -34,7 +37,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <form className="w-[300px] relative">
+      <form className="relative">
         <input
           type="search"
           placeholder="Type here"
@@ -43,7 +46,7 @@ const SearchBar = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
-          className="p-2 bg-slate-900 rounded-full"
+          className="p-2 bg-slate-900 rounded-full bg-opacity-50"
           style={{
             position: "absolute",
             top: "75%",
@@ -58,7 +61,7 @@ const SearchBar = () => {
 
       {searchResult && (
         <div className="absolute">
-          <Link href={`/movies/${searchResult.id}`}>
+          <Link href={`/`}>
             <Link href={`/movies/${searchResult.id}`}>
               <img
                 src={`https://image.tmdb.org/t/p/w200${searchResult.poster_path}`}
