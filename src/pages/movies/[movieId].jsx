@@ -2,87 +2,106 @@ import Image from "next/image"
 import { useState } from "react"
 import Link from "next/link"
 
-export default function MoviePage({ movieData, creditsData, relatedData }) {
-  let director = "N/A"
-  if (creditsData && creditsData.crew) {
-    const directorData = creditsData.crew.find(
-      (person) => person.job === "Director",
-    )
-    if (directorData) {
-      director = directorData.name
-    }
-  }
-
-  let productionCompany = "N/A"
-  if (
-    movieData &&
-    movieData.production_companies &&
-    movieData.production_companies.length > 0
-  ) {
-    productionCompany = movieData.production_companies[0].name
-  }
+function ActorsCard({ actor }) {
+  const profilePath = actor.profile_path
   return (
-    <div className="bg-F5FAFF text-white p-10">
-      <div className="mb-10 ">
+    <div className="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+      <div className="relative h-60 overflow-hidden rounded-t-xl bg-white bg-clip-border text-gray-700 shadow-lg">
         <Image
-          src={movieData.backdrop_path}
-          alt={movieData.title}
-          width={200}
-          height={300}
+          src={`https://image.tmdb.org/t/p/w500${profilePath}`}
+          alt="profile-picture"
+          layout="fill"
+          objectFit="cover"
         />
       </div>
-      <div className="flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 mb-10 md:mb-0 md:pr-10">
-          <Image
-            src={movieData.poster_path}
-            alt={movieData.title}
-            width={500}
-            height={600}
-          />
-        </div>
-        <div className="w-full md:w-1/2">
-          <h2 className="text-4xl font-bold mb-4">{movieData.title}</h2>
-          <ul className="list-disc pl-5 mb-4">
-            <li>Director: {director}</li>
-            <li>Language: {movieData.original_language}</li>
-            <li>Release Date: {movieData.release_date}</li>
-            <li>Runtime: {movieData.runtime} minutes</li>
-          </ul>
-
-          <p className="text-xl mt-4">
-            Production Company: {productionCompany}
-          </p>
-        </div>
+      <div className="p-4 text-center">
+        <h4 className="mb-2 block font-sans text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+          {actor.name}
+        </h4>
+        <p className="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-xs font-medium leading-relaxed text-transparent antialiased">
+          {actor.character}
+        </p>
       </div>
+    </div>
+  )
+}
 
-      {/* Related Movies Section */}
-      <div className="mt-10">
-        <h2 className="text-2xl font-bold mb-4">Related Movies</h2>
-        <div className="flex flex-wrap justify-around">
-          {relatedData.results.map((movie, index) => (
-            <div
-              key={index}
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4"
-            >
-              <Link href={`/movie/${movie.id}`}>
-                <a>
-                  <div className="flex flex-col items-center max-w-sm mx-auto">
-                    <Image
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt={movie.title}
-                      width={500}
-                      height={300}
-                    />
-                    <div className="mt-3 text-center">
-                      <h1 className="text-xl font-bold">{movie.title}</h1>
-                      <p className="mt-2">{movie.release_date}</p>
-                    </div>
-                  </div>
-                </a>
-              </Link>
-            </div>
-          ))}
+export default function MoviePage({ movieData, creditsData, relatedData }) {
+  return (
+    <div className="bg-white dark:bg-gray-900">
+      <section className="p-0 m-0 h-96 relative">
+        <div className="w-full h-full flex items-center justify-center">
+          <Image
+            src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`}
+            alt={movieData.title}
+            layout="fill"
+            objectFit="cover"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-gray-900"></div>
         </div>
+      </section>
+
+      <section className="bg-white dark:bg-gray-900 p-0 pt-0 m-0 ml-0 mr-0">
+        <div className="gap-4 items-start py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-[auto,1fr] lg:py-6 lg:px-2">
+          <div className="grid grid-cols-1 rounded-lg gap-2">
+            <Image
+              className="rounded-lg"
+              src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
+              alt={movieData.title}
+              width={220}
+              height={300}
+            />
+          </div>
+          <div className="font-light text-gray-500 sm:text-xs dark:text-gray-400">
+            <h2 className="mb-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 dark:text-white">
+              {movieData.title}
+            </h2>
+            <div className="bg-white dark:bg-gray-900 text-white p-2 pl-0 rounded flex max-w-md">
+              <p className="mr-2">
+                {movieData.original_language.toUpperCase()}
+              </p>
+              <p>{movieData.runtime} min</p>
+              <p className="mr-2 ml-3"> ⭐{movieData.vote_average}</p>
+              <p className="mr-1">({movieData.vote_count} Votes) </p>
+            </div>
+
+            <p className="mb-2 text-sm">{movieData.overview}</p>
+            <div className="text-lg">
+              <ul>
+                <li>
+                  <span className="text-white">Genres:</span>{" "}
+                  {movieData.genres.map((genre) => genre.name).join(", ")}
+                </li>
+                <li>
+                  <span className="text-white">Release date:</span>{" "}
+                  {movieData.release_date}
+                </li>
+                {movieData.cast &&
+                  movieData.cast
+                    .filter((person) => person.job === "Director")
+                    .map((director) => {
+                      return (
+                        <li key={director.id}>
+                          <span className="text-white">Director:</span>{" "}
+                          {director.name}
+                        </li>
+                      )
+                    })}
+
+                <li>ffdfdfd</li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="mb-4 ml-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 dark:text-white">
+        Cast
+      </div>
+      <div className="mt-6 grid p-4 grid-cols-5 gap-4">
+        {creditsData.cast.slice(0, 5).map((actor) => (
+          <ActorsCard key={actor.id} actor={actor} />
+        ))}
       </div>
     </div>
   )
@@ -100,6 +119,7 @@ export async function getServerSideProps(context) {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmZlZjIwMmQ0MjFhNTYxNzg2YzU3ODQ5YzRhZmJjMyIsInN1YiI6IjY1MDFiNjcxNmEyMjI3MDBjM2I2YWIxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XJjyQmVwx0bDppP1jD0WnR_WV0eH7kBhZBRVRQFEMhQ",
     },
   }
+
   const response = await fetch(url, options)
   const creditsResponse = await fetch(creditsUrl, options)
   const relatedResponse = await fetch(relatedUrl, options)
