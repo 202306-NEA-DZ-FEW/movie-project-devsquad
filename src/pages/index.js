@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react"
 import MovieLoop from "@/components/Cards/Loop"
 import MovieCard from "@/components/Cards/Movie-Card"
 import SideCard from "@/components/Cards/Side-Card"
-import { fetcher, fetchData } from "@/utils/API"
+import { fetcher } from "@/utils/API"
+import Navbar from "@/components/Navbar/Navbar"
 import Link from "next/link"
 
 export default function Home({ latestMovies, trendingMovies, popularSeries }) {
   return (
     <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
+      <Navbar />
       <MovieLoop />
       <h1 className="rounded rounded-r-none pr-2 pt-1 pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-600 bg-primary ml-auto text-3xl mt-10 mb-10">
         <strong>LATEST MOVIES</strong>
