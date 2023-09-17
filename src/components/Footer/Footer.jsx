@@ -3,57 +3,70 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
 const Footer = () => {
-  const githubUsernames = [
-    "farouk26",
-    "hasnahadd",
-    "mouloud247",
-    "mounibzaidi",
-    "takidilmi",
-    "Halla24",
-  ]
-  const linkedinUsernames = [
-    "manel-hasna-haddoud-aa5095278",
-    "mouloud-mecheter-4a3701166",
-    "faroukisme",
-    "takidilmi",
-    "halla-hamidi-989197229",
+  const users = [
+    {
+      name: "farouk26",
+      githubUsername: "farouk26",
+      linkedinUsername: "faroukisme",
+    },
+    {
+      name: "hasnahadd",
+      githubUsername: "hasnahadd",
+      linkedinUsername: "manel-hasna-haddoud-aa5095278",
+    },
+    {
+      name: "Mouloud Mecheter",
+      githubUsername: "mouloud247",
+      linkedinUsername: "mouloud-mecheter-4a3701166",
+    },
+    {
+      name: "Mounib Zaidi",
+      githubUsername: "mounibzaidi",
+    },
+    {
+      name: "Takieddine Dilmi",
+      githubUsername: "takidilmi",
+      linkedinUsername: "takidilmi",
+    },
+    {
+      name: "Halla Hamidi",
+      githubUsername: "Halla24",
+      linkedinUsername: "halla-hamidi-989197229",
+    },
   ]
 
-  const [githubUserData, setGithubUserData] = useState([])
-  const [linkedinUserData, setLinkedinUserData] = useState([])
+  const [userData, setUserData] = useState([])
 
   useEffect(() => {
-    const fetchGithubData = async () => {
+    const fetchUserData = async () => {
       try {
-        const promises = githubUsernames.map((username) =>
-          fetch(`https://api.github.com/users/${username}`).then((response) =>
-            response.json(),
-          ),
-        )
+        const promises = users.map(async (user) => {
+          const githubResponse = await fetch(
+            `https://api.github.com/users/${user.githubUsername}`,
+          )
+          const githubData = await githubResponse.json()
+
+          const linkedinResponse = await fetchLinkedInProfile(
+            user.linkedinUsername,
+          )
+
+          return {
+            name: user.name,
+            githubAvatarUrl: githubData.avatar_url,
+            githubUrl: githubData.html_url,
+            linkedinUrl: linkedinResponse,
+          }
+        })
+
         const userData = await Promise.all(promises)
-        setGithubUserData(userData)
+        setUserData(userData)
       } catch (error) {
-        console.error("Error fetching GitHub data:", error)
+        console.error("Error fetching data:", error)
       }
     }
 
-    fetchGithubData()
-  })
-
-  useEffect(() => {
-    const fetchLinkedinData = async () => {
-      try {
-        const promises = linkedinUsernames.map((username) =>
-          fetchLinkedInProfile(username),
-        )
-        await Promise.all(promises)
-      } catch (error) {
-        console.error("Error fetching LinkedIn data:", error)
-      }
-    }
-
-    fetchLinkedinData()
-  })
+    fetchUserData()
+  }, [])
 
   async function fetchLinkedInProfile(username) {
     const encodedUser = encodeURIComponent(username)
@@ -68,50 +81,52 @@ const Footer = () => {
 
     try {
       const response = await fetch(url, options)
-      const result = await response.json()
-      const linkedinUrl = result.data.linkedin_url
-      console.log(`LinkedIn Profile URL for ${username}:`, linkedinUrl)
+      if (response.ok) {
+        const result = await response.json()
+        const linkedinUrl = result.data.linkedin_url
+        return linkedinUrl
+      } else {
+        console.error(
+          `Error fetching LinkedIn profile for ${username}: ${response.status} ${response.statusText}`,
+        )
+        return ""
+      }
     } catch (error) {
       console.error(`Error fetching LinkedIn profile for ${username}:`, error)
+      return ""
     }
   }
 
   return (
     <div className="bg-black p-4">
       <div className="mb-4">
-        <h2 className="text-white text-2xl mb-2">GitHub Users</h2>
-        <ul>
-          {githubUserData.map((user, index) => (
-            <li
-              key={index}
-              className="text-white border-b border-gray-600 py-2"
-            >
-              <div>
-                <h3 className="text-red-500">{user.name}</h3>
-                <p>
-                  URL:{" "}
-                  <a href={user.html_url} className="text-red-500">
-                    {user.html_url}
-                  </a>
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2 className="text-white text-2xl mb-2">LinkedIn Users</h2>
-        <div className="mt-4">
-          {linkedinUsernames.map((username, index) => (
-            <div key={index} className="flex items-center">
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                className="text-red-500 mr-2"
+        <h2 className="text-white text-2xl mb-2">Users</h2>
+        {userData.map((user, index) => (
+          <div key={index} className="text-white border-b border-gray-600 py-4">
+            <div className="flex items-center">
+              <img
+                src={user.githubAvatarUrl}
+                alt={`Avatar of ${user.name}`}
+                className="rounded-full h-10 w-10 mr-4"
               />
-              <p className="text-white">{`LinkedIn Profile for ${username}`}</p>
+              <h3 className="text-red-500">{user.name}</h3>
             </div>
-          ))}
-        </div>
+            <div className="mt-2">
+              <p>
+                GitHub:{" "}
+                <a href={user.githubUrl} className="text-red-500">
+                  {user.githubUrl}
+                </a>
+              </p>
+              <p>
+                LinkedIn:{" "}
+                <a href={user.linkedinUrl} className="text-red-500">
+                  {user.linkedinUrl}
+                </a>
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
