@@ -32,7 +32,7 @@ const Categories = () => {
         <ul
           value={selectedCategory}
           onChange={(e) => handleCategoryChange(e.target.value)}
-          className="bg-transparent absolute text-amber-500 h-100 rounded-md "
+          className="dropdown absolute"
         >
           {/* Render each category as a list item */}
           <li>

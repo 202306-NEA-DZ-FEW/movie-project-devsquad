@@ -23,25 +23,27 @@ const Genres = () => {
   }
 
   return (
-    <nav>
+    <div>
       <ul>
         <li>
-          <a href="#" onClick={toggleGenresDropdown}>
+          <Link href="#" onClick={toggleGenresDropdown}>
             Genres
-          </a>
-          {isGenresDropdownOpen && (
-            <ul className="bg-transparent absolute text-amber-500 h-100 rounded-md">
-              {/* Render each genre as a list item */}
-              {genres?.map((genre) => (
-                <li key={genre.id}>
-                  <Link href="#">{genre.name}</Link>
-                </li>
-              ))}
-            </ul>
-          )}
+          </Link>
+          <div>
+            {isGenresDropdownOpen && (
+              <ul className="dropdown absolute">
+                {/* Render each genre as a list item */}
+                {genres?.map((genre) => (
+                  <li key={genre.id}>
+                    <Link href="#">{genre.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </li>
       </ul>
-    </nav>
+    </div>
   )
 }
 

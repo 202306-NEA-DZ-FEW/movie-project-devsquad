@@ -1,14 +1,14 @@
-import React from "react"
-import Logo from "./Logo"
-import NavBar from "./NavBar"
+// import React from "react"
+// import Logo from "./Logo"
+// import NavBar from "./NavBar"
 
-const Header = () => {
-  return (
-    <header className="bg-transparent sticky top-0 z{20} mx-auto flex-wrap flex w-full items-center justify-between border-b border-gray-500 p-8 bg-opacity-10">
-      <Logo />
-      <NavBar />
-    </header>
-  )
-}
+// const Header = () => {
+//   return (
+//     <header className="navbar bg-base-100">
+//       <Logo />
+//       <NavBar />
+//     </header>
+//   )
+// }
 
-export default Header
+// export default Header

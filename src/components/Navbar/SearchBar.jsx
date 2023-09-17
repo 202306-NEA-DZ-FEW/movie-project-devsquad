@@ -69,7 +69,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <form className="w-[300px] relative">
+      <form className="relative">
         <input
           type="search"
           placeholder="Type here"
