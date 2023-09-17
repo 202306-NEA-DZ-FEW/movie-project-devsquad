@@ -8,31 +8,32 @@ const Footer = () => {
     {
       name: "farouk26",
       githubUsername: "farouk26",
-      linkedinUsername: "faroukisme",
+      linkedinUrl: "https://www.linkedin.com/in/faroukisme",
     },
     {
       name: "hasnahadd",
       githubUsername: "hasnahadd",
-      linkedinUsername: "manel-hasna-haddoud-aa5095278",
+      linkedinUrl: "https://www.linkedin.com/in/manel-hasna-haddoud-aa5095278",
     },
     {
       name: "Mouloud Mecheter",
       githubUsername: "mouloud247",
-      linkedinUsername: "mouloud-mecheter-4a3701166",
+      linkedinUrl: "https://www.linkedin.com/in/mouloud-mecheter-4a3701166",
     },
     {
       name: "Mounib Zaidi",
       githubUsername: "mounibzaidi",
+      linkedinUrl: "Mounib Zaidi",
     },
     {
       name: "Takieddine Dilmi",
       githubUsername: "takidilmi",
-      linkedinUsername: "takidilmi",
+      linkedinUrl: "https://www.linkedin.com/in/takidilmi",
     },
     {
       name: "Halla Hamidi",
       githubUsername: "Halla24",
-      linkedinUsername: "halla-hamidi-989197229",
+      linkedinUrl: "https://www.linkedin.com/in/halla-hamidi-989197229",
     },
   ]
 
@@ -47,15 +48,11 @@ const Footer = () => {
           )
           const githubData = await githubResponse.json()
 
-          const linkedinResponse = await fetchLinkedInProfile(
-            user.linkedinUsername,
-          )
-
           return {
             name: user.name,
             githubAvatarUrl: githubData.avatar_url,
             githubUrl: githubData.html_url,
-            linkedinUrl: linkedinResponse,
+            linkedinUrl: user.linkedinUrl,
           }
         })
 
@@ -68,35 +65,6 @@ const Footer = () => {
 
     fetchUserData()
   }, [])
-
-  async function fetchLinkedInProfile(username) {
-    const encodedUser = encodeURIComponent(username)
-    const url = `https://fresh-linkedin-profile-data.p.rapidapi.com/get-linkedin-profile?linkedin_url=https%3A%2F%2Fwww.linkedin.com%2Fin%2F${encodedUser}%2F`
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "e5f70bf62cmshb47319825439d1ep172133jsn6ac874d435d8",
-        "X-RapidAPI-Host": "fresh-linkedin-profile-data.p.rapidapi.com",
-      },
-    }
-
-    try {
-      const response = await fetch(url, options)
-      if (response.ok) {
-        const result = await response.json()
-        const linkedinUrl = result.data.linkedin_url
-        return linkedinUrl
-      } else {
-        console.error(
-          `Error fetching LinkedIn profile for ${username}: ${response.status} ${response.statusText}`,
-        )
-        return ""
-      }
-    } catch (error) {
-      console.error(`Error fetching LinkedIn profile for ${username}:`, error)
-      return ""
-    }
-  }
 
   return (
     <div className="bg-gradient-to-r from-slate-900 to-sky-950 text-neutral-content">
@@ -130,7 +98,7 @@ const Footer = () => {
                       <FontAwesomeIcon icon={faLinkedin} className="mr-1" />
                       LinkedIn:{" "}
                       <a href={user.linkedinUrl} className="text-red-500">
-                        {user.linkedinUrl}
+                        LinkedIn Profile
                       </a>
                     </p>
                   )}
