@@ -40,17 +40,17 @@ function SideCard(series) {
           />
         </figure>
         <div className="card-body p-0  w-full h-full grid grid-cols-4">
-          <h3 className="card-title justify-start self-start col-span-4 w-full ml-2">
+          <h1 className="card-title justify-start self-start col-span-4 w-full ml-2">
             {name}
-          </h3>
+          </h1>
           <p className="w-full col-span-4 ml-2">{first_air_date}</p>
           <p className="w-full col-span-4 ml-2">
             {vote_average} <FaStarHalfAlt />
           </p>
-          <div className="col-span-4 px-5 py-1">
+          <div className="col-span-4 px-5">
             {trailerUrl && (
               <a href={trailerUrl}>
-                <button className="btn bg-inherit justify-center text-yellow-500">
+                <button className="btn btn-sm mb-4 bg-inherit justify-center text-yellow-500">
                   WATCH TRAILER
                 </button>
               </a>

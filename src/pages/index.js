@@ -9,11 +9,11 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
   return (
     <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
       <MovieLoop />
-      <h1 className="rounded rounded-r-none  pr-2 pt-1 pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-600 bg-primary ml-auto text-3xl mt-10 mb-10">
+      <h1 className="rounded rounded-r-none pr-2 pt-1 pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-600 bg-primary ml-auto text-3xl mt-10 mb-10">
         <strong>LATEST MOVIES</strong>
       </h1>
-      <div className="first-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-        {latestMovies?.results.slice(0, 4).map((movie) => {
+      <div className="first-container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+        {latestMovies?.results.slice(0, 8).map((movie) => {
           return (
             <div key={movie.id}>
               <Link href={`/movies/${movie.id}`}>
@@ -26,10 +26,10 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
       <h1 className=" rounded rounded-l-none pl-2 pt-1 pb-1 bg-gradient-to-r from-sky-950 to-slate-500 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-start mr-auto text-3xl mt-10 mb-10">
         <strong>TRENDING</strong>
       </h1>
-      <div className="wrapper grid grid-cols-8 gap-4 pb-10">
+      <div className="wrapper grid grid-cols-8 gap-4 pb-4">
         <div className="second-container col-span-8 md:col-span-6 lg:col-span-6">
-          <div className="latest-movies-section grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 w-full">
-            {trendingMovies?.results.slice(0, 6).map((movie) => {
+          <div className="latest-movies-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {trendingMovies?.results.slice(0, 12).map((movie) => {
               return (
                 <div key={movie.id}>
                   <Link href={`/movies/${movie.id}`}>
@@ -45,7 +45,7 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
             <strong>POPULAR TV SHOWS</strong>
           </h1>
           <div className="popular-all grid grid-cols-1 gap-4">
-            {popularSeries?.results.slice(0, 4).map((series) => {
+            {popularSeries?.results.slice(0, 9).map((series) => {
               return (
                 <div key={series.id}>
                   <SideCard {...series} />
