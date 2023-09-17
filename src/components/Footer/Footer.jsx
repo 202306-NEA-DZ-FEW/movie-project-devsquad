@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import Link from "next/link"
 
 const Footer = () => {
   const users = [
@@ -98,36 +99,52 @@ const Footer = () => {
   }
 
   return (
-    <div className="bg-black p-4">
+    <div className="bg-gradient-to-r from-slate-900 to-sky-950 text-neutral-content">
       <div className="mb-4">
-        <h2 className="text-white text-2xl mb-2">Users</h2>
-        {userData.map((user, index) => (
-          <div key={index} className="text-white border-b border-gray-600 py-4">
-            <div className="flex items-center">
-              <img
-                src={user.githubAvatarUrl}
-                alt={`Avatar of ${user.name}`}
-                className="rounded-full h-10 w-10 mr-4"
-              />
-              <h3 className="text-red-500">{user.name}</h3>
+        <h2 className="text-blue text-lg mb-2"> Contact us</h2>
+        <div className="flex flex-wrap">
+          {userData.map((user, index) => (
+            <div
+              key={index}
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2"
+            >
+              <div className="bg-white bg-opacity-20 p-2 rounded-lg shadow-sm">
+                <div className="flex items-center">
+                  <img
+                    src={user.githubAvatarUrl}
+                    alt={`Avatar of ${user.name}`}
+                    className="rounded-full h-8 w-8 mr-2"
+                  />
+                  <h3 className="text-white-500 text-sm">{user.name}</h3>
+                </div>
+                <div className="mt-1">
+                  <p className="text-xs">
+                    GitHub:{" "}
+                    <a href={user.githubUrl} className="text-blue-500">
+                      {user.githubUrl}
+                    </a>
+                  </p>
+                  {user.linkedinUrl && (
+                    <p className="text-xs">
+                      LinkedIn:{" "}
+                      <Link href={user.linkedinUrl} className="text-red-500">
+                        {user.linkedinUrl}
+                      </Link>
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="mt-2">
-              <p>
-                GitHub:{" "}
-                <a href={user.githubUrl} className="text-red-500">
-                  {user.githubUrl}
-                </a>
-              </p>
-              <p>
-                LinkedIn:{" "}
-                <a href={user.linkedinUrl} className="text-red-500">
-                  {user.linkedinUrl}
-                </a>
-              </p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+      <footer className="footer footer-center p-2 bg-base-300 text-base-content">
+        <aside>
+          <p className="text-xs">
+            Copyright © 2023 - All right reserved by DevSquad team
+          </p>
+        </aside>
+      </footer>
     </div>
   )
 }
