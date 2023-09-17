@@ -101,7 +101,7 @@ const Footer = () => {
   return (
     <div className="bg-gradient-to-r from-slate-900 to-sky-950 text-neutral-content">
       <div className="mb-4">
-        <h2 className="text-blue text-lg mb-2"> Contact us</h2>
+        <h2 className="text-blue text-1g mb-2"> made by </h2>
         <div className="flex flex-wrap">
           {userData.map((user, index) => (
             <div
@@ -119,6 +119,7 @@ const Footer = () => {
                 </div>
                 <div className="mt-1">
                   <p className="text-xs">
+                    <FontAwesomeIcon icon={faGithub} className="mr-1" />
                     GitHub:{" "}
                     <a href={user.githubUrl} className="text-blue-500">
                       {user.githubUrl}
@@ -126,10 +127,11 @@ const Footer = () => {
                   </p>
                   {user.linkedinUrl && (
                     <p className="text-xs">
+                      <FontAwesomeIcon icon={faLinkedin} className="mr-1" />
                       LinkedIn:{" "}
-                      <Link href={user.linkedinUrl} className="text-red-500">
+                      <a href={user.linkedinUrl} className="text-red-500">
                         {user.linkedinUrl}
-                      </Link>
+                      </a>
                     </p>
                   )}
                 </div>
