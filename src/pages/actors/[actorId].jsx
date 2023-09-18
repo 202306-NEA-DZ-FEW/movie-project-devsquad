@@ -1,8 +1,6 @@
 import React from "react"
-import daisyui from "daisyui"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { data } from "autoprefixer"
 
 function ActorDetailsPage() {
   const router = useRouter()

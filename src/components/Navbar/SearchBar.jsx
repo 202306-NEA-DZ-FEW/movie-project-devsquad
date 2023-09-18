@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
-import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import Link from "next/link"
 
 const SearchBar = () => {

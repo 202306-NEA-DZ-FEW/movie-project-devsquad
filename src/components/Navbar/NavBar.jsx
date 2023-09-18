@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import SearchBar from "./SearchBar"
 import Genres from "./Genres"
 import Categories from "./Categories"
 import Link from "next/link"
-import CustomModal from "./CustomModal"
+
 import Logo from "./Logo"
 
 const NavBar = () => {
