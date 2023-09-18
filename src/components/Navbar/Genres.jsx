@@ -37,7 +37,9 @@ const Genres = () => {
                     className="hover:bg-slate-200 hover:text-slate-800 hover:rounded"
                     key={genre.id}
                   >
-                    <Link href={`./movies`}>{genre.name}</Link>
+                    <Link href={`./movies?genre=${genre.id}`}>
+                      {genre.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
