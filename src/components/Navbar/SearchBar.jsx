@@ -42,7 +42,14 @@ const SearchBar = () => {
     setSearchQuery("") // Clear search query after search
   }
 
-  const itemsToDisplay = [...actors, ...movieResults]
+  const itemsToDisplay = [...actors, ...movieResults].filter((item) => {
+    if (item.name) {
+      return item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    } else if (item.title) {
+      return item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    }
+    return false
+  })
 
   return (
     <div>

@@ -5,7 +5,7 @@ import MovieCard from "@/components/Cards/Movie-Card"
 const MovieList = () => {
   const [movies, setMovies] = useState([])
   const router = useRouter()
-  const { genre, category } = router.query
+  const { genre, category, title } = router.query
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -40,10 +40,19 @@ const MovieList = () => {
 
     fetchMovies()
   }, [genre, category])
+  const getMovieListHeading = () => {
+    if (genre) {
+      return `${title}`
+    } else if (category) {
+      return `${category}`
+    } else {
+      return "Movie List"
+    }
+  }
 
   return (
     <div className="bg-gray-900 text-white">
-      <h1 className="text-4xl font-bold text-white mb-4">{genre.name}</h1>
+      <h1 className="text-4xl font-bold mb-4">{getMovieListHeading()}</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {movies?.map((movie) => (
           <div key={movie.id} className="bg-gray-800 p-2 rounded-lg">
