@@ -98,7 +98,7 @@ function ActorDetailsPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-4">
           {relatedMovies?.slice(0, 4).map((movie) => (
-            <Link key={movie.name} href={`/movies/movieId?id=${movie.id}`}>
+            <Link key={movie.name} href={`/movies/${movie.id}`}>
               <div
                 key={movie.id}
                 className="card h-full bg-base-100 shadow-lg hover:scale-105 hover:shadow-lg object-cover mt-2 mb-2 rounded-md transition-all duration-500 ease-in-out cursor-pointer hover:opacity-60 bg-gradient-to-r from-sky-950 via-blue-950 to-slate-500"

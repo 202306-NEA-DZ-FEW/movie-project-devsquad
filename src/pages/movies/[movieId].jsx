@@ -88,7 +88,6 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
                       )
                     })}
 
-                <li>ffdfdfd</li>
                 <li></li>
               </ul>
             </div>
@@ -100,7 +99,11 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
       </div>
       <div className="mt-6 grid p-4 grid-cols-5 gap-4">
         {creditsData.cast.slice(0, 5).map((actor) => (
-          <ActorsCard key={actor.id} actor={actor} />
+          // eslint-disable-next-line react/jsx-key
+          <Link href={`/actors/actorId?id=${actor.id}`}>
+            {" "}
+            <ActorsCard key={actor.id} actor={actor} />{" "}
+          </Link>
         ))}
       </div>
     </div>
