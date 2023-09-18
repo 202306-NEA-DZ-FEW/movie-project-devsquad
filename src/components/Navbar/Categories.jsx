@@ -42,9 +42,7 @@ const Categories = () => {
   return (
     <>
       <div className=" ">
-        <Link href={`./`} onClick={toggleMoviesDropdown}>
-          Movies
-        </Link>
+        <p onClick={toggleMoviesDropdown}>Movies</p>
         {isMoviesDropdownOpen && (
           <ul className="absolute left-12 bg-slate-800 text-slate-300 w-3/4 h-38 rounded pt-2 pb-2">
             {/* Render each category as a list item */}
