@@ -32,7 +32,7 @@ function SideCard(series) {
 
   return (
     <>
-      <div className="card card-side h-44 bg-gradient-to-r from-sky-950 from-10% via-indigo-950 via-10% to-slate-500 shadow-xl transform hover:scale-105 transition-transform duration-300 ease-in-out">
+      <div className="card card-side h-40 bg-gradient-to-r from-sky-950 from-10% via-indigo-950 via-10% to-slate-500 shadow-xl transform hover:scale-105 transition-transform duration-300 ease-in-out">
         <figure className="max-h-full w-2/3 object-cover">
           <img
             src={`https://image.tmdb.org/t/p/w500/` + poster_path}
@@ -40,7 +40,7 @@ function SideCard(series) {
           />
         </figure>
         <div className="card-body p-0  w-full h-full grid grid-cols-4">
-          <h1 className="card-title justify-start self-start col-span-4 w-full ml-2">
+          <h1 className="card-title justify-start self-start col-span-4 w-full ml-2 text-yellow-200">
             {name}
           </h1>
           <p className="w-full col-span-4 ml-2">{first_air_date}</p>
@@ -50,7 +50,7 @@ function SideCard(series) {
           <div className="col-span-4 px-5">
             {trailerUrl && (
               <a href={trailerUrl}>
-                <button className="btn btn-sm mb-4 bg-inherit justify-center text-yellow-500">
+                <button className="btn btn-sm mb-4 bg-inherit justify-center text-yellow-200">
                   WATCH TRAILER
                 </button>
               </a>

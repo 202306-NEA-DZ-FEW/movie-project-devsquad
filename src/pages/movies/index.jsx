@@ -46,19 +46,23 @@ const MovieList = () => {
   return (
     <div className="bg-gray-900 text-white">
       <h1 className="text-4xl font-bold mb-4">Movie List</h1>
-      <div className="grid grid-cols-5 gap-4">
+      <ul className="grid grid-cols-5 gap-4">
         {movies?.map((movie) => (
-          <div key={movie.id}>
-            <ActorsCard
-              actor={{
-                name: movie.title,
-                character: movie.overview,
-                profile_path: movie.poster_path,
-              }}
-            />
-          </div>
+          <li key={movie.id} className="bg-gray-800 p-2 rounded-lg">
+            <Link href={`/movies/${movie.id}`}>
+              {movie.poster_path && (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="w-full mb-2 rounded-lg"
+                />
+              )}
+              <h3 className="text-lg font-bold">{movie.title}</h3>
+              <p className="text-gray-300">{movie.overview}</p>
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }
