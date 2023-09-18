@@ -4,16 +4,17 @@ import Link from "next/link"
 function ActorsCard({ actor }) {
   const profilePath = actor.profile_path
   return (
-    <div className="relative flex flex-col rounded-xl bg-white bg-clip-border text-white shadow-md">
+    <div className="relative flex flex-col rounded-xl bg-gray-900 border-2 bg-clip-border text-white shadow-md">
       <div className="relative h-60 overflow-hidden rounded-t-xl bg-white fit bg-clip-border text-gray-700 shadow-lg">
         <Image
-          className="hover:shadow-lg hover:scale-105 w-full h-full object-cover mb-2 rounded-md transition-all duration-500 ease-in-out cursor-pointer hover:opacity-65"
+          className="hover:shadow-lg hover:scale-105 w-full h-full object-cover mb-2  transition-all duration-500 ease-in-out cursor-pointer hover:opacity-65"
           src={`https://image.tmdb.org/t/p/w500${profilePath}`}
           alt="profile-picture"
           layout="fill"
           objectFit="cover"
         />
       </div>
+
       <div className="p-4 text-center bg-gray-900 border-s border-t-0 border-r border-b border-l border-gray-400 rounded-b-xl">
         <h4 className="mb-2 block font-sans text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
           {actor.name}
@@ -32,7 +33,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
   )
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className=" bg-gray-900">
       <section className="p-0 m-0 h-96 relative">
         <div className="w-full h-full flex items-center justify-center">
           <Image
@@ -56,7 +57,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             />
           </div>
           <div className="w-full md:w-1/2 md:ml-0">
-            <h1 className="text-4xl mb-2 ml-0 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 dark:text-white">
+            <h1 className="text-xl mb-2 ml-0 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 ">
               {movieData.title}
             </h1>
             <div className="flex items-center mb-4">
@@ -82,15 +83,55 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
                   <span className="text-white">Director:</span>{" "}
                   {director ? director.name : "N/A"}
                 </li>
+                <li>
+                  <div className="text-sm">
+                    <ul>
+                      <li>
+                        <span className="text-white">Genres:</span>{" "}
+                        {movieData?.genres
+                          ?.map((genre) => genre.name)
+                          .join(", ")}
+                      </li>
+                      <li>
+                        <span className="text-white">Release date:</span>{" "}
+                        {movieData?.release_date}
+                      </li>
+                      <li>
+                        <span className="text-white">Director:</span>{" "}
+                        {director ? director.name : "N/A"}
+                      </li>
+                      <div className="flex  items-center">
+                        <span className="text-white">Production:</span>{" "}
+                        <div className="flex ml-4 space-x-4">
+                          {movieData?.production_companies
+                            ?.slice(0, 3)
+                            .map((company) => (
+                              <div
+                                key={company.id}
+                                className="flex items-center"
+                              >
+                                <img
+                                  src={`https://image.tmdb.org/t/p/w92${company.logo_path}`}
+                                  alt={company.name}
+                                  className="w-6 h-6 rounded-full"
+                                />
+                                <span>{company.name}</span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    </ul>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
-          {/* Add a white box to the right */}
+
           <div className=" flex-1 bg-white"></div>
         </div>
       </section>
 
-      <div className="mb-4 ml-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 dark:text-white">
+      <div className="mb-4 ml-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 ">
         Cast
       </div>
       <div className="mt-6 grid p-4 grid-cols-5 gap-4">
