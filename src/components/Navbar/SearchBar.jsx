@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
-import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 
 const SearchBar = () => {
   {
@@ -49,9 +48,6 @@ const SearchBar = () => {
     await fetchMovies()
   }
 
-  // console.log(movieResults);
-  // console.log(actors);
-
   {
     /*items that display based on the user input in search field */
   }
@@ -74,11 +70,11 @@ const SearchBar = () => {
           type="search"
           placeholder="Search"
           value={searchQuery}
-          className="w-full p-2 rounded-full bg-neutral-300 text-center"
+          className="w-full p-2 rounded-full bg-neutral-300 text-slate-900 text-center"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
-          className="p-2 bg-slate-900 rounded-full bg-opacity-50"
+          className="p-2 bg-slate-900 rounded-full bg-opacity-70"
           style={{
             position: "absolute",
             top: "75%",

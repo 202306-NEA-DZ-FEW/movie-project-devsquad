@@ -40,8 +40,12 @@ const HeadingCard = ({ movie }) => {
         </div>
         <div className="p-4 lg:p-6 flex flex-col justify-center w-full lg:w-full">
           <div className="flex-grow">
-            <h1 className="text-6xl mb-8">Featured</h1>
-            <h2 className="card-title text-3xl">{movie.original_title}</h2>
+            <h1 className="text-6xl mb-8 text-yellow-200">
+              <strong>Featured</strong>
+            </h1>
+            <h2 className="card-title text-3xl text-yellow-200 mb-2">
+              {movie.original_title}
+            </h2>
             <p className="text-1xl">{movie.overview}</p>
             <p>Popularity: {movie.popularity}</p>
             <p>Release Date: {movie.release_date}</p>

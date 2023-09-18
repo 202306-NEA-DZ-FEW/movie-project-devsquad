@@ -40,7 +40,7 @@ function SideCard(series) {
           />
         </figure>
         <div className="card-body p-0  w-full h-full grid grid-cols-4">
-          <h1 className="card-title justify-start self-start col-span-4 w-full ml-2">
+          <h1 className="card-title justify-start self-start col-span-4 w-full ml-2 text-yellow-200">
             {name}
           </h1>
           <p className="w-full col-span-4 ml-2">{first_air_date}</p>
@@ -50,7 +50,7 @@ function SideCard(series) {
           <div className="col-span-4 px-5">
             {trailerUrl && (
               <a href={trailerUrl}>
-                <button className="btn btn-sm mb-4 bg-inherit justify-center text-yellow-500">
+                <button className="btn btn-sm mb-4 bg-inherit justify-center text-yellow-200">
                   WATCH TRAILER
                 </button>
               </a>

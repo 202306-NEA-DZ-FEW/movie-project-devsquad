@@ -1,10 +1,8 @@
 import React, { useState } from "react"
-import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import SearchBar from "./SearchBar"
 import Genres from "./Genres"
 import Categories from "./Categories"
 import Link from "next/link"
-import CustomModal from "./CustomModal"
 import Logo from "./Logo"
 
 const Navbar = () => {
@@ -36,7 +34,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-slate-800"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-300 rounded-box w-52 text-slate-800"
           >
             <li>
               <Categories />
@@ -51,7 +49,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <Link href={`./`}>
+        <Link href={`./index.js`}>
           <Logo />
         </Link>
       </div>

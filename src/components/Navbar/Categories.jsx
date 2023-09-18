@@ -32,30 +32,30 @@ const Categories = () => {
         <ul
           value={selectedCategory}
           onChange={(e) => handleCategoryChange(e.target.value)}
-          className="text-neutral-300 bg-gray-800 dropdown absolute rounded p-4 left-12 top-0 w-64 h-38"
+          className="text-slate-300 bg-gray-800 dropdown absolute rounded p-4 left-12 top-0 w-64 h-38"
         >
           {/* Render each category as a list item */}
-          <li className="hover:bg-neutral-300 hover:text-slate-800 hover:rounded">
+          <li className="hover:bg-slate-300 hover:text-slate-800 hover:rounded">
             <Link href={`./`} value="top_rated">
               Top Rated
             </Link>
           </li>
-          <li className="hover:bg-neutral-300 hover:text-slate-800 hover:rounded">
+          <li className="hover:bg-slate-300 hover:text-slate-800 hover:rounded">
             <Link href={`./`} value="now-playing">
               Now Playing
             </Link>
           </li>
-          <li className="hover:bg-neutral-300 hover:text-slate-800 hover:rounded">
+          <li className="hover:bg-slate-300 hover:text-slate-800 hover:rounded">
             <Link href={`./`} value="upcoming">
               Upcoming
             </Link>
           </li>
-          <li className="hover:bg-neutral-300 hover:text-slate-800 hover:rounded">
+          <li className="hover:bg-slate-300 hover:text-slate-800 hover:rounded">
             <Link href={`./`} value="popular">
               Popular
             </Link>
           </li>
-          <li className="hover:bg-neutral-300 hover:text-slate-800 hover:rounded">
+          <li className="hover:bg-slate-300 hover:text-slate-800 hover:rounded">
             <Link href={`./`} value="latest">
               Latest
             </Link>
