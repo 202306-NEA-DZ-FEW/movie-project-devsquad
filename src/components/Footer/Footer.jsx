@@ -67,16 +67,19 @@ const Footer = () => {
   }, [])
 
   return (
-    <div className="bg-gradient-to-r from-slate-900 to-sky-950 text-neutral-content">
+    <div className="bg-gradient-to-r from-slate-900 to-sky-950 text-neutral-content mt-4">
       <div className="mb-4">
-        <h2 className="text-blue text-1g mb-2"> made by </h2>
+        <h2 className="text-blue text-1g mb-2 text-center md:text-center lg:text-center pt-1 pb-1">
+          {" "}
+          MADE BY{" "}
+        </h2>
         <div className="flex flex-wrap">
           {userData.map((user, index) => (
             <div
               key={index}
               className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2"
             >
-              <div className="bg-white bg-opacity-20 p-2 rounded-lg shadow-sm">
+              <div className="bg-gradient-to-r from-slate-700 via-30% to-sky-950 bg-opacity-20 p-2 rounded-lg shadow-sm">
                 <div className="flex items-center">
                   <img
                     src={user.githubAvatarUrl}
@@ -89,7 +92,7 @@ const Footer = () => {
                   <p className="text-xs">
                     <FontAwesomeIcon icon={faGithub} className="mr-1" />
                     GitHub:{" "}
-                    <a href={user.githubUrl} className="text-blue-500">
+                    <a href={user.githubUrl} className="text-blue-400">
                       {user.githubUrl}
                     </a>
                   </p>
@@ -97,7 +100,7 @@ const Footer = () => {
                     <p className="text-xs">
                       <FontAwesomeIcon icon={faLinkedin} className="mr-1" />
                       LinkedIn:{" "}
-                      <a href={user.linkedinUrl} className="text-red-500">
+                      <a href={user.linkedinUrl} className="text-blue-400">
                         LinkedIn Profile
                       </a>
                     </p>
@@ -111,7 +114,7 @@ const Footer = () => {
       <footer className="footer footer-center p-2 bg-base-300 text-base-content">
         <aside>
           <p className="text-xs">
-            Copyright © 2023 - All right reserved by DevSquad team
+            Copyright © 2023 - All right reserved by DevSquad Team
           </p>
         </aside>
       </footer>
