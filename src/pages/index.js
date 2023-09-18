@@ -1,70 +1,78 @@
-import Image from "next/image"
-
-export function MovieCard({ movie }) {
-  return (
-    <a
-      href="#"
-      class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-    >
-      <Image
-        class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt=""
-        width={500}
-        height={300}
-      />
-      <div class="flex flex-col justify-between p-4 leading-normal">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {movie.title}
-        </h5>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {movie.overview}
-        </p>
-      </div>
-    </a>
-  )
-}
+import MovieLoop from "@/components/Cards/Loop"
+import MovieCard from "@/components/Cards/Movie-Card"
+import SideCard from "@/components/Cards/Side-Card"
+import { fetcher } from "@/utils/API"
+import Navbar from "@/components/Navbar/Navbar"
 import Link from "next/link"
+import Footer from "@/components/Footer/Footer"
 
-export default function Home({ latestMovies }) {
+export default function Home({ latestMovies, trendingMovies, popularSeries }) {
   return (
-    <div className="gap-4 overflow-x-scroll">
-      {latestMovies.results.map((movie) => (
-        <Link key={movie.id} href={`/movies/${movie.id}`}>
-          <MovieCard movie={movie} {...movie} />
-        </Link>
-      ))}
-    </div>
+    <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
+      <Navbar />
+      <MovieLoop />
+      <h1 className="rounded rounded-r-none pr-2 pt-1 pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-600 bg-primary ml-auto text-3xl mt-10 mb-10">
+        <strong>LATEST MOVIES</strong>
+      </h1>
+      <div className="first-container h-68 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full">
+        {latestMovies?.results.slice(0, 18).map((movie) => {
+          return (
+            <div key={movie.id}>
+              <Link href={`/movies/${movie.id}`}>
+                <MovieCard {...movie} />
+              </Link>
+            </div>
+          )
+        })}
+      </div>
+      <h1 className=" rounded rounded-l-none pl-2 pt-1 pb-1 bg-gradient-to-r from-sky-950 to-slate-500 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-start mr-auto text-3xl mt-10 mb-10">
+        <strong>TRENDING</strong>
+      </h1>
+      <div className="wrapper grid grid-cols-8 gap-4 pb-4">
+        <div className="second-container col-span-8 md:col-span-6 lg:col-span-6">
+          <div className="latest-movies-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 w-full">
+            {trendingMovies?.results.slice(0, 15).map((movie) => {
+              return (
+                <div key={movie.id}>
+                  <Link href={`/movies/${movie.id}`}>
+                    <MovieCard {...movie} />
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <div className="side-container col-span-8 md:col-span-2 lg:col-span-2">
+          <h1 className="w-full bg-gradient-to-r from-sky-950 via-blue-950 to-slate-500 text-center mr-auto text-2xl mb-10 rounded rounded-r-none p-1">
+            <strong>POPULAR TV SHOWS</strong>
+          </h1>
+          <div className="popular-all grid grid-cols-1 gap-4">
+            {popularSeries?.results.slice(0, 12).map((series) => {
+              return (
+                <div key={series.id}>
+                  <SideCard {...series} />
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </main>
   )
 }
 
+//Fetch Side
 export async function getStaticProps() {
-  const url = "https://api.themoviedb.org/3/movie/popular"
-  const options = {
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmZlZjIwMmQ0MjFhNTYxNzg2YzU3ODQ5YzRhZmJjMyIsInN1YiI6IjY1MDFiNjcxNmEyMjI3MDBjM2I2YWIxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XJjyQmVwx0bDppP1jD0WnR_WV0eH7kBhZBRVRQFEMhQ",
-    },
-  }
-
-  const response = await fetch(url, options)
-  const data = await response.json()
+  const latestMoviesData = await fetcher("trending/movie/day")
+  const trendingMoviesData = await fetcher("movie/top_rated")
+  const popularSeriesData = await fetcher("trending/tv/day")
 
   return {
     props: {
-      latestMovies: data,
+      latestMovies: latestMoviesData,
+      trendingMovies: trendingMoviesData,
+      popularSeries: popularSeriesData,
     },
   }
-}
-import { useState, useEffect } from "react"
-
-function App() {
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  return <h1>{isClient ? "This is never prerendered" : "Prerendered"}</h1>
 }
