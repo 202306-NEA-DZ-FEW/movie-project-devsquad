@@ -35,7 +35,7 @@ function ActorDetailsPage() {
   }
 
   return (
-    <main style={{ backgroundImage: "url(/imageBackground.jpg)" }}>
+    <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
       <div className="container mx-auto p-4">
         <div className="lg:flex">
           {/* Actor Image (25% of screen width) */}
@@ -56,7 +56,7 @@ function ActorDetailsPage() {
           <div className="lg:w-3/4 p-4">
             <div
               className="card bg-base-100 shadow-lg"
-              style={{ backgroundColor: "transparent" }}
+              style={{ backgroundColor: "#202025" }}
             >
               <div
                 className="card-body flex flex-col justify-between h-full"
@@ -69,13 +69,16 @@ function ActorDetailsPage() {
                   >
                     {actorData?.name}
                   </h2>
-                  <p> </p>
+
                   <h2 className="card-title">Gender</h2>
                   <p>{actorData?.gender === 1 ? "Female" : "Male"}</p>
+
                   <h2 className="card-title">Popularity</h2>
                   <p>{actorData?.popularity}</p>
+
                   <h2 className="card-title">Birthday</h2>
                   <p>{actorData?.birthday}</p>
+
                   <h2 className="card-title">Biography</h2>
                   <p>{actorData?.biography}</p>
                 </div>
@@ -90,19 +93,19 @@ function ActorDetailsPage() {
         className="mt-8"
         style={{ marginLeft: 91, marginRight: 91, paddingBottom: 20 }}
       >
-        <h2 className="text-2xl font-semibold mb-4" style={{ color: "white" }}>
+        <h2
+          className="text-2xl font-semibold mb-4 text-center md:text-center lg:text-start w-full md:w-full lg:w-1/3 mr-auto bg-slate-800"
+          style={{ color: "white" }}
+        >
           Related Movies
         </h2>
-        <div className="grid lg:grid-cols-5 gap-4">
-          {relatedMovies?.slice(0, 5).map((movie) => (
+        <div className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-3 gap-4">
+          {relatedMovies?.slice(0, 3).map((movie) => (
             <Link key={movie.name} href={`/movies/movieId?id=${movie.id}`}>
               <div
                 key={movie.id}
-                className="card bg-base-100 shadow-lg hover:scale-105 hover:shadow-lg object-cover mt-2 mb-2 rounded-md transition-all duration-500 ease-in-out cursor-pointer hover:opacity-60"
-                style={{
-                  backgroundImage: "url(/imageBackground.jpg)",
-                  border: "2px solid white",
-                }}
+                className="card bg-base-100 shadow-lg hover:scale-105 hover:shadow-lg object-cover mt-2 mb-2 rounded-md transition-all duration-500 ease-in-out cursor-pointer hover:opacity-60 bg-gradient-to-r from-sky-950 via-blue-950 to-slate-500"
+                style={{ border: "2px solid white" }}
               >
                 <div className="card-body">
                   <img
@@ -115,9 +118,11 @@ function ActorDetailsPage() {
                   >
                     {movie.title}
                   </h3>
+
                   <p className="mt-2" style={{ color: "white" }}>
-                    Release Year:{" "}
+                    Release Year :
                   </p>
+
                   <p style={{ color: "white" }}>{movie.release_date}</p>
                 </div>
               </div>
