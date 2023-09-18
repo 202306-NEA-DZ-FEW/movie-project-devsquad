@@ -46,9 +46,9 @@ const Categories = () => {
           Movies
         </Link>
         {isMoviesDropdownOpen && (
-          <ul className="absolute left-12 text-white">
+          <ul className="absolute left-12 bg-slate-800 text-slate-300 w-3/4 h-38 rounded pt-2 pb-2">
             {/* Render each category as a list item */}
-            <li>
+            <li className="hover:text-slate-800 hover:bg-slate-200 hover:rounded">
               <button
                 value="top_rated"
                 onClick={() => handleCategoryChange("top_rated")}
@@ -56,7 +56,7 @@ const Categories = () => {
                 TopRated
               </button>
             </li>
-            <li>
+            <li className="hover:text-slate-800 hover:bg-slate-200 hover:rounded">
               <button
                 value="now_playing"
                 onClick={() => handleCategoryChange("now_playing")}
@@ -64,7 +64,7 @@ const Categories = () => {
                 NowPlaying
               </button>
             </li>
-            <li>
+            <li className="hover:text-slate-800 hover:bg-slate-200 hover:rounded">
               <button
                 value="upcoming"
                 onClick={() => handleCategoryChange("upcoming")}
@@ -72,7 +72,7 @@ const Categories = () => {
                 Upcoming
               </button>
             </li>
-            <li>
+            <li className="hover:text-slate-800 hover:bg-slate-200 hover:rounded">
               <button
                 value="popular"
                 onClick={() => handleCategoryChange("popular")}
@@ -80,7 +80,7 @@ const Categories = () => {
                 Popular
               </button>
             </li>
-            <li>
+            <li className="hover:text-slate-800 hover:bg-slate-200 hover:rounded">
               <button
                 value="latest"
                 onClick={() => handleCategoryChange("latest")}

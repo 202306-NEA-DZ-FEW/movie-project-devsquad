@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
-import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import Link from "next/link"
 
 const SearchBar = () => {
@@ -50,13 +49,13 @@ const SearchBar = () => {
       <form className="relative">
         <input
           type="search"
-          placeholder="Type here"
+          placeholder="Search"
           value={searchQuery}
-          className="w-full p-2 rounded-full bg-slate-800"
+          className="w-full p-2 rounded-full bg-neutral-300 text-slate-900 text-center"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
-          className="p-2 bg-slate-900 rounded-full bg-opacity-50"
+          className="p-2 bg-slate-900 rounded-full bg-opacity-70"
           style={{
             position: "absolute",
             top: "75%",
@@ -74,7 +73,6 @@ const SearchBar = () => {
             <Link href={`./`}>
               {itemsToDisplay.map((item) => (
                 <li key={item.id}>
-                  {" "}
                   <Link
                     href={
                       item.hasOwnProperty("gender")
