@@ -4,13 +4,14 @@ function MovieCard({ title, release_date, overview, popularity, poster_path }) {
   return (
     <>
       <div className="card w-full shadow-xl h-full rounded-3xl transform hover:scale-105 transition-transform duration-300 ease-in-out">
-        <figure className="h-1/2 w-full object-cover">
+        <figure>
           <img
             src={`https://image.tmdb.org/t/p/w500/` + poster_path}
             alt="Movie"
+            className="object-cover"
           />
         </figure>
-        <div className="card-body rounded-b-3xl grid cols-4 p-0 h-1/4 bg-gradient-to-r from-sky-950 via-30% to-slate-500">
+        <div className="card-body rounded-b-3xl grid cols-4 p-0 h-1/4 bg-gradient-to-r from-slate-500 via-30% to-sky-950 bg-opacity-20">
           <h2 className="card-title col-span-4 ml-2 mt-3 text-3xl font-bold text-yellow-200">
             {title}
           </h2>

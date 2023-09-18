@@ -4,6 +4,7 @@ import SideCard from "@/components/Cards/Side-Card"
 import { fetcher } from "@/utils/API"
 import Navbar from "@/components/Navbar/Navbar"
 import Link from "next/link"
+import Footer from "@/components/Footer/Footer"
 
 export default function Home({ latestMovies, trendingMovies, popularSeries }) {
   return (
@@ -13,7 +14,7 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
       <h1 className="rounded rounded-r-none pr-2 pt-1 pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-600 bg-primary ml-auto text-3xl mt-10 mb-10">
         <strong>LATEST MOVIES</strong>
       </h1>
-      <div className="first-container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 w-full">
+      <div className="first-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
         {latestMovies?.results.slice(0, 8).map((movie) => {
           return (
             <div key={movie.id}>
@@ -29,7 +30,7 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
       </h1>
       <div className="wrapper grid grid-cols-8 gap-4 pb-4">
         <div className="second-container col-span-8 md:col-span-6 lg:col-span-6">
-          <div className="latest-movies-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+          <div className="latest-movies-section grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 w-full">
             {trendingMovies?.results.slice(0, 9).map((movie) => {
               return (
                 <div key={movie.id}>
@@ -56,6 +57,7 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   )
 }
