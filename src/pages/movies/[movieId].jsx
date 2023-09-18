@@ -57,7 +57,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             />
           </div>
           <div className="w-full md:w-1/2 md:ml-0">
-            <h1 className=" mb-2 ml-0 text-4xl mb-0 tracking-tight font-extrabold text-white">
+            <h1 className=" mb-2 ml-0 text-4xl tracking-tight font-extrabold text-white">
               {movieData.title}
             </h1>
             <div className="flex items-center mb-4">
@@ -125,13 +125,13 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
           </div>
 
           <div className="mt-1 flex flex-col mr-4 items-center gap-2">
-            <div className="mb-2 ml-2 text-4xl mb-0 center tracking-tight font-extrabold text-white">
+            <div className="mb-2 ml-2 text-4xl center tracking-tight font-extrabold text-white">
               Related Movies
             </div>
             {relatedData?.results?.slice(0, 3).map((movie) => (
               <div
                 key={movie.id}
-                className="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50"
+                className="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-black"
               >
                 <div className="grid grid-cols-6 p-2 gap-y-2">
                   <div>
@@ -154,7 +154,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
         </div>
       </section>
 
-      <div className="mb-4 ml-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 ">
+      <div className="mb-4 ml-4 text-4xl tracking-tight font-extrabold text-gray-900 ">
         Cast
       </div>
       <div className="mt-6 grid p-4 grid-cols-5 gap-4">
