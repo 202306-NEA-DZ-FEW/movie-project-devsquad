@@ -1,7 +1,3 @@
-import { Container } from "postcss"
-import Image from "next/image"
-import { FaCalendarCheck } from "react-icons/fa"
-
 function MovieCard({ title, release_date, overview, popularity, poster_path }) {
   return (
     <>
@@ -13,11 +9,11 @@ function MovieCard({ title, release_date, overview, popularity, poster_path }) {
             className="h-full w-full object-cover"
           />
         </figure>
-        <div className="card-body h-36 rounded-b-2xl grid cols-3 p-0 bg-gradient-to-r from-sky-950 via-10% to-slate-500 bg-opacity-20">
-          <h2 className="card-title col-span-4 ml-2 mt-3 text-1xl font-bold p-0 text-slate-200">
+        <div className="card-body h-40 rounded-b-2xl grid cols-3 p-0 bg-gradient-to-r from-sky-950 via-10% to-slate-500 bg-opacity-20">
+          <h2 className="card-title col-span-4 ml-2 mt-3 text-1xl font-bold p-0  text-slate-200">
             {title}
           </h2>
-          <p className="col-span-2 ml-2 mt-2 self-start p-0 text-start text-yellow-200">
+          <p className="col-span-2 ml-2 mt-2 text-sm self-start p-0 text-start text-yellow-200">
             <strong>Popularity {popularity}</strong>
           </p>
           <p className="col-span-2 ml-3 mt-3 mr-3 mb-2 pb-10 self-start justify-center text-end text-sm text-yellow-200">

@@ -11,10 +11,10 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
     <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
       <Navbar />
       <MovieLoop />
-      <h1 className="rounded rounded-r-none pr-2 pt-1 pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-600 bg-primary ml-auto text-3xl mt-10 mb-10">
+      <h1 className="rounded rounded-r-none pb-1 w-full md:w-full lg:w-2/4 text-center md:text-center lg:text-end bg-gradient-to-r from-sky-950 to-slate-600 bg-primary ml-auto text-3xl mt-10 mb-10">
         <strong>LATEST MOVIES</strong>
       </h1>
-      <div className="first-container h-68 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full">
+      <div className="first-container pl-8 pr-8 h-68 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full">
         {latestMovies?.results.slice(0, 18).map((movie) => {
           return (
             <div key={movie.id}>
