@@ -131,7 +131,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             {relatedData?.results?.slice(0, 3).map((movie) => (
               <div
                 key={movie.id}
-                className="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50"
+                className="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-black"
               >
                 <div className="grid grid-cols-6 p-2 gap-y-2">
                   <div>

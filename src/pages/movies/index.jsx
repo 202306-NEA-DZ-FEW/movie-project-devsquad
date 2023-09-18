@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { fetcher } from "@/utils/API"
-import { ActorsCard } from ".movies/[movieId]"
+import MovieCard from "@/components/Cards/Movie-Card"
 
 const MovieList = () => {
   const [movies, setMovies] = useState([])
@@ -45,24 +44,20 @@ const MovieList = () => {
 
   return (
     <div className="bg-gray-900 text-white">
-      <h1 className="text-4xl font-bold mb-4">Movie List</h1>
-      <ul className="grid grid-cols-5 gap-4">
+      <h1 className="text-4xl font-bold text-white mb-4">{genre.name}</h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {movies?.map((movie) => (
-          <li key={movie.id} className="bg-gray-800 p-2 rounded-lg">
-            <Link href={`/movies/${movie.id}`}>
-              {movie.poster_path && (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-full mb-2 rounded-lg"
-                />
-              )}
-              <h3 className="text-lg font-bold">{movie.title}</h3>
-              <p className="text-gray-300">{movie.overview}</p>
-            </Link>
-          </li>
+          <div key={movie.id} className="bg-gray-800 p-2 rounded-lg">
+            <MovieCard
+              title={movie.title}
+              release_date={movie.release_date}
+              overview={movie.overview}
+              popularity={movie.popularity}
+              poster_path={movie.poster_path}
+            />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
