@@ -5,35 +5,45 @@ import { AiOutlineMenu, AiOutlineCloseCircle } from "react-icons/ai"
 import Link from "next/link"
 
 const SearchBar = () => {
-  {
-    /*state for trackig the type of the user */
-  }
   const [searchQuery, setSearchQuery] = useState("")
-  const [searchResult, setSearchResult] = useState(null)
+  const [actors, setActors] = useState([])
+  const [movieResults, setMovieResults] = useState([])
+
+  const fetchActors = async () => {
+    try {
+      const actorResults = await fetcher(
+        `search/person?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
+      )
+      setActors(actorResults.results)
+    } catch (error) {
+      console.error("Failed to fetch actors:", error)
+    }
+  }
+
+  const fetchMovies = async () => {
+    try {
+      const movieResults = await fetcher(
+        `search/movie?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
+      )
+      setMovieResults(movieResults.results)
+    } catch (error) {
+      console.error("Failed to fetch movies:", error)
+    }
+  }
 
   useEffect(() => {
-    const fetchSearchResult = async () => {
-      if (searchQuery.trim() !== "") {
-        try {
-          const response = await fetcher(
-            `search/movie?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
-          )
-          setSearchResult(response.results[0])
-        } catch (error) {
-          console.error("Failed to fetch search result:", error)
-        }
-      } else {
-        setSearchResult(null)
-      }
-    }
-
-    fetchSearchResult()
+    fetchActors()
+    fetchMovies()
   }, [searchQuery])
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault()
-    // Perform search
+    fetchActors()
+    fetchMovies()
+    setSearchQuery("") // Clear search query after search
   }
+
+  const itemsToDisplay = [...actors, ...movieResults]
 
   return (
     <div>
@@ -58,18 +68,26 @@ const SearchBar = () => {
           <BiSearchAlt2 size={20} />
         </button>
       </form>
-
-      {searchResult && (
-        <div className="absolute">
-          <Link href={`/`}>
-            <Link href={`/movies/${searchResult.id}`}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200${searchResult.poster_path}`}
-                alt={searchResult.title}
-                className="w-24 h-auto"
-              />
+      {searchQuery && itemsToDisplay.length > 0 && (
+        <div className="dropdown ">
+          <ul className="absolute h-28 overflow-y-auto">
+            <Link href={`./`}>
+              {itemsToDisplay.map((item) => (
+                <li key={item.id}>
+                  {" "}
+                  <Link
+                    href={
+                      item.hasOwnProperty("gender")
+                        ? `/actors/actorId?id=${item.id}`
+                        : `/movies/${item.id}`
+                    }
+                  >
+                    {item.name || item.title}
+                  </Link>
+                </li>
+              ))}
             </Link>
-          </Link>
+          </ul>
         </div>
       )}
     </div>
@@ -77,15 +95,3 @@ const SearchBar = () => {
 }
 
 export default SearchBar
-
-{
-  /* {selectedMovie && (
-        <div>
-          <h2>{selectedMovie.title}</h2>
-          <p>{selectedMovie.overview}</p>
-          <Link href={`/movie/${selectedMovie.id}`}>
-            <Link href="#">Go to Movie Page</Link>
-          </Link>
-        </div>
-      )} */
-}
