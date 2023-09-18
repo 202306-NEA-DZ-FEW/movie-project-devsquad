@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { fetcher } from "@/utils/API"
-import { ActorsCard } from ".movies/[movieId]"
 
 const MovieList = () => {
   const [movies, setMovies] = useState([])
@@ -44,7 +42,7 @@ const MovieList = () => {
   }, [genre, category])
 
   return (
-    <div className="bg-gray-900 text-white">
+    <div className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300 text-white">
       <h1 className="text-4xl font-bold mb-4">Movie List</h1>
       <ul className="grid grid-cols-5 gap-4">
         {movies?.map((movie) => (
