@@ -57,7 +57,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             />
           </div>
           <div className="w-full md:w-1/2 md:ml-0">
-            <h1 className=" mb-2 ml-0 text-4xl mb-0 tracking-tight font-extrabold text-white ">
+            <h1 className=" mb-2 ml-0 text-4xl mb-0 tracking-tight font-extrabold text-white">
               {movieData.title}
             </h1>
             <div className="flex items-center mb-4">
@@ -124,7 +124,33 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             </div>
           </div>
 
-          <div className=" flex-1 bg-white"></div>
+          <div className="mt-1 flex flex-col mr-4 items-center gap-2">
+            <div className="mb-2 ml-2 text-4xl mb-0 center tracking-tight font-extrabold text-white">
+              Related Movies
+            </div>
+            {relatedData?.results?.slice(0, 3).map((movie) => (
+              <div
+                key={movie.id}
+                className="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50"
+              >
+                <div className="grid grid-cols-6 p-2 gap-y-2">
+                  <div>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      className="max-w-16 max-h-16 rounded-sm"
+                      alt={movie.title}
+                    />
+                  </div>
+                  <div className="col-span-5 md:col-span-4 ml-4">
+                    <p className="text-white font-bold">{movie.title}</p>
+                    <p className="text-gray-400">
+                      Release date: {movie.release_date}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
