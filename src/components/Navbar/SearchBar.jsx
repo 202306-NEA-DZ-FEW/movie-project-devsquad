@@ -69,10 +69,13 @@ const SearchBar = () => {
       </form>
       {searchQuery && itemsToDisplay.length > 0 && (
         <div className="dropdown ">
-          <ul className="absolute h-28 overflow-y-auto">
+          <ul className="absolute z-20 rounded h-64 bg-slate-300 pt-2 pb-2 pl-4 pr-4 overflow-y-auto">
             <Link href={`./`}>
               {itemsToDisplay.map((item) => (
-                <li key={item.id}>
+                <li
+                  className="text-slate-800 hover:bg-slate-800 hover:text-slate-200 hover:rounded"
+                  key={item.id}
+                >
                   <Link
                     href={
                       item.hasOwnProperty("gender")
