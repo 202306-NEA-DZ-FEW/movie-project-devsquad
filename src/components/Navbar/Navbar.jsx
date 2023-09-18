@@ -61,19 +61,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-{
-  /*           
-          <div>
-            <Genres />
-          </div>
-          
-          <div>
-            <Categories />
-          </div>
-          <div>
-            <Link href="#">Actors</Link>
-          </div>
-          <div>
-            <SearchBar />
-          </div> */
-}

@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 
 function ActorsCard({ actor }) {
   const profilePath = actor.profile_path
