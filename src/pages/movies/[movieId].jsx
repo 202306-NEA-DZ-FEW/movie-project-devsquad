@@ -53,7 +53,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             />
           </div>
           <div className="font-light text-gray-500 sm:text-xs dark:text-gray-400">
-            <h2 className="mb-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
               {movieData.title}
             </h2>
             <div className="bg-white dark:bg-gray-900 text-white p-2 pl-0 rounded flex max-w-md">
@@ -95,7 +95,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
           </div>
         </div>
       </section>
-      <div className="mb-4 ml-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 dark:text-white">
+      <div className="mb-4 ml-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
         Cast
       </div>
       <div className="mt-6 grid p-4 grid-cols-5 gap-4">
