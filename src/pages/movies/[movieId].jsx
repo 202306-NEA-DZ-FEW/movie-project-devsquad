@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import YouTube from "react-youtube"
 
 function ActorsCard({ actor }) {
   const profilePath = actor.profile_path
@@ -8,7 +7,7 @@ function ActorsCard({ actor }) {
     <div className="relative flex flex-col rounded-xl bg-gray-900 border-2 bg-clip-border text-white shadow-md">
       <div className="relative h-60 overflow-hidden rounded-t-xl bg-white fit bg-clip-border text-gray-700 shadow-lg">
         <Image
-          className="hover:shadow-lg hover:scale-105 w-full h-full object-cover mb-2 transition-all duration-500 ease-in-out cursor-pointer hover:opacity-65"
+          className="hover:shadow-lg hover:scale-105 w-full h-full object-cover mb-2  transition-all duration-500 ease-in-out cursor-pointer hover:opacity-65"
           src={`https://image.tmdb.org/t/p/w500${profilePath}`}
           alt="profile-picture"
           layout="fill"
@@ -28,15 +27,13 @@ function ActorsCard({ actor }) {
   )
 }
 
-export default function MoviePage({ movieData, creditsData, trailerData }) {
+export default function MoviePage({ movieData, creditsData, relatedData }) {
   const director = creditsData?.crew?.find(
     (crewMember) => crewMember.job === "Director",
   )
 
-  const videoId = trailerData.results?.[0]?.key
-
   return (
-    <div className="bg-gray-900">
+    <div className=" bg-gray-900">
       <section className="p-0 m-0 h-96 relative">
         <div className="w-full h-full flex items-center justify-center">
           <Image
@@ -60,7 +57,7 @@ export default function MoviePage({ movieData, creditsData, trailerData }) {
             />
           </div>
           <div className="w-full md:w-1/2 md:ml-0">
-            <h1 className="mb-2 ml-0 text-4xl mb-0 tracking-tight font-extrabold text-white">
+            <h1 className=" mb-2 ml-0 text-4xl mb-0 tracking-tight font-extrabold text-white ">
               {movieData.title}
             </h1>
             <div className="flex items-center mb-4">
@@ -96,10 +93,11 @@ export default function MoviePage({ movieData, creditsData, trailerData }) {
                           .join(", ")}
                       </li>
                       <li>
-                        <span className="text-white">Director:</span>{" "}
-                        {director ? director.name : "N/A"}
+                        <span className="text-white">Release date:</span>{" "}
+                        {movieData?.release_date}
                       </li>
-                      <div className="flex items-center">
+
+                      <div className="flex  items-center">
                         <span className="text-white">Production:</span>{" "}
                         <div className="flex ml-4 space-x-4">
                           {movieData?.production_companies
@@ -126,20 +124,11 @@ export default function MoviePage({ movieData, creditsData, trailerData }) {
             </div>
           </div>
 
-          <div className="md:w-1/2 md:ml-0">
-            {videoId && (
-              <div
-                className="w-full h-0 relative"
-                style={{ paddingBottom: "56.25%" }}
-              >
-                <YouTube videoId={videoId} />
-              </div>
-            )}
-          </div>
+          <div className=" flex-1 bg-white"></div>
         </div>
       </section>
 
-      <div className="mb-4 ml-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900">
+      <div className="mb-4 ml-4 text-4xl mb-0 tracking-tight font-extrabold text-gray-900 ">
         Cast
       </div>
       <div className="mt-6 grid p-4 grid-cols-5 gap-4">
@@ -156,32 +145,27 @@ export async function getServerSideProps(context) {
   const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`
   const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`
   const relatedUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US`
-  const trailerUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`
-
   const options = {
     headers: {
       accept: "application/json",
       authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmZlZjIwMmQ0MjFhNTYxNzg2YzU3ODQ5YzRhZmBjMyIsInN1YiI6IjY1MDFiNjcxNmEyMjI3MDBjM3I2YWIxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XJjyQmVwx0bDppP1jD0WnR_WV0eH7kBhZBRVRQFEMhQ",
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMmZlZjIwMmQ0MjFhNTYxNzg2YzU3ODQ5YzRhZmJjMyIsInN1YiI6IjY1MDFiNjcxNmEyMjI3MDBjM2I2YWIxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XJjyQmVwx0bDppP1jD0WnR_WV0eH7kBhZBRVRQFEMhQ",
     },
   }
 
   const response = await fetch(url, options)
   const creditsResponse = await fetch(creditsUrl, options)
   const relatedResponse = await fetch(relatedUrl, options)
-  const trailerResponse = await fetch(trailerUrl, options)
 
   const data = await response.json()
   const creditsData = await creditsResponse.json()
   const relatedData = await relatedResponse.json()
-  const trailerData = await trailerResponse.json()
 
   return {
     props: {
       movieData: data,
       creditsData: creditsData,
       relatedData: relatedData,
-      trailerData: trailerData,
     },
   }
 }
