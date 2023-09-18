@@ -47,7 +47,7 @@ export default function Home({ latestMovies, trendingMovies, popularSeries }) {
             <strong>POPULAR TV SHOWS</strong>
           </h1>
           <div className="popular-all grid grid-cols-1 gap-4">
-            {popularSeries?.results.slice(0, 12).map((series) => {
+            {popularSeries?.results.slice(0, 11).map((series) => {
               return (
                 <div key={series.id}>
                   <SideCard {...series} />
