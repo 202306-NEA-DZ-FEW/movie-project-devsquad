@@ -1,67 +1,48 @@
 import React, { useState, useEffect } from "react"
 import { fetcher } from "@/utils/API"
 import { BiSearchAlt2 } from "react-icons/bi"
+import Link from "next/link"
 
 const SearchBar = () => {
-  {
-    /*state for trackig the type of the user */
-  }
   const [searchQuery, setSearchQuery] = useState("")
-  {
-    /*state for displaying  the actor  */
-  }
-
   const [actors, setActors] = useState([])
-  {
-    /*state for displaying  the movies  */
-  }
-
   const [movieResults, setMovieResults] = useState([])
 
   const fetchActors = async () => {
     try {
-      const actor = await fetcher(
-        "person/popular?api_key=12fef202d421a561786c57849c4afbc3",
+      const actorResults = await fetcher(
+        `search/person?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
       )
-      setActors(actor.results)
+      setActors(actorResults.results)
     } catch (error) {
       console.error("Failed to fetch actors:", error)
     }
   }
-  async function fetchMovies() {
+
+  const fetchMovies = async () => {
     try {
-      const data = await fetcher(
-        "movie/now_playing?api_key=12fef202d421a561786c57849c4afbc3",
+      const movieResults = await fetcher(
+        `search/movie?query=${searchQuery}&api_key=12fef202d421a561786c57849c4afbc3`,
       )
-      setMovieResults(data.results)
+      setMovieResults(movieResults.results)
     } catch (error) {
       console.error("Failed to fetch movies:", error)
     }
   }
+
   useEffect(() => {
     fetchActors()
     fetchMovies()
-  }, [])
+  }, [searchQuery])
+
   const handleSearch = async (e) => {
     e.preventDefault()
-    await fetchActors()
-    await fetchMovies()
+    fetchActors()
+    fetchMovies()
+    setSearchQuery("") // Clear search query after search
   }
 
-  {
-    /*items that display based on the user input in search field */
-  }
-
-  const itemsToDisplay = [...actors, ...movieResults].filter((item) => {
-    if (item.name) {
-      return item.name.toLowerCase().includes(searchQuery.toLowerCase())
-    } else if (item.title) {
-      return item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    }
-    return false
-  })
-
-  console.log(itemsToDisplay)
+  const itemsToDisplay = [...actors, ...movieResults]
 
   return (
     <div>
@@ -86,11 +67,27 @@ const SearchBar = () => {
           <BiSearchAlt2 size={20} />
         </button>
       </form>
-      {/* <ul>
-      {itemsToDisplay.map((item) => (
-          <li key={item.id}>{item.name}{item.title}</li>
-        ))}
-      </ul> */}
+      {searchQuery && itemsToDisplay.length > 0 && (
+        <div className="dropdown ">
+          <ul className="absolute h-28 overflow-y-auto">
+            <Link href={`./`}>
+              {itemsToDisplay.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    href={
+                      item.hasOwnProperty("gender")
+                        ? `/actors/actorId?id=${item.id}`
+                        : `/movies/${item.id}`
+                    }
+                  >
+                    {item.name || item.title}
+                  </Link>
+                </li>
+              ))}
+            </Link>
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

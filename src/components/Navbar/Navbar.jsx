@@ -34,14 +34,14 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-300 rounded-box w-52 text-slate-800"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-200 rounded-box w-52 text-slate-800"
           >
             <li>
               <Categories />
             </li>
             <br></br>
             <li>
-              <Link href={`./`}>Actors</Link>
+              <Link href={`./actors`}>Actors</Link>
             </li>
             <br></br>
             <Genres />
@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <Link href={`./index.js`}>
+        <Link href={`./movies`}>
           <Logo />
         </Link>
       </div>
