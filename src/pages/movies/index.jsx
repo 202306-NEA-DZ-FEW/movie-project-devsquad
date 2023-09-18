@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import MovieCard from "@/components/Cards/Movie-Card"
+import Link from "next/link"
 
 const MovieList = () => {
   const [movies, setMovies] = useState([])
@@ -56,13 +57,15 @@ const MovieList = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {movies?.map((movie) => (
           <div key={movie.id} className="bg-gray-800 p-2 rounded-lg">
-            <MovieCard
-              title={movie.title}
-              release_date={movie.release_date}
-              overview={movie.overview}
-              popularity={movie.popularity}
-              poster_path={movie.poster_path}
-            />
+            <Link href={`/movies/${movie.id}`}>
+              <MovieCard
+                title={movie.title}
+                release_date={movie.release_date}
+                overview={movie.overview}
+                popularity={movie.popularity}
+                poster_path={movie.poster_path}
+              />
+            </Link>
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 function ActorsCard({ actor }) {
   const profilePath = actor.profile_path
@@ -132,21 +133,23 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
                 key={movie.id}
                 className="w-[30rem] border-2 border-b-4 border-gray-200 rounded-xl hover:bg-black"
               >
-                <div className="grid grid-cols-6 p-2 gap-y-2">
-                  <div>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      className="max-w-16 max-h-16 rounded-sm"
-                      alt={movie.title}
-                    />
+                <Link href={`/movies/${movie.id}`}>
+                  <div className="grid grid-cols-6 p-2 gap-y-2">
+                    <div>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        className="max-w-16 max-h-16 rounded-sm"
+                        alt={movie.title}
+                      />
+                    </div>
+                    <div className="col-span-5 md:col-span-4 ml-4">
+                      <p className="text-white font-bold">{movie.title}</p>
+                      <p className="text-gray-400">
+                        Release date: {movie.release_date}
+                      </p>
+                    </div>
                   </div>
-                  <div className="col-span-5 md:col-span-4 ml-4">
-                    <p className="text-white font-bold">{movie.title}</p>
-                    <p className="text-gray-400">
-                      Release date: {movie.release_date}
-                    </p>
-                  </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -158,7 +161,10 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
       </div>
       <div className="mt-6 grid p-4 grid-cols-5 gap-4">
         {creditsData?.cast?.slice(0, 5).map((actor) => (
-          <ActorsCard key={actor.id} actor={actor} />
+          // eslint-disable-next-line react/jsx-key
+          <Link href={`/actors/actorId?id=${actor.id}`}>
+            <ActorsCard key={actor.id} actor={actor} />
+          </Link>
         ))}
       </div>
     </div>
