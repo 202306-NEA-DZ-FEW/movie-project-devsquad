@@ -36,55 +36,20 @@ function ActorDetailsPage() {
 
   return (
     <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
-      <div className="container mx-auto p-4">
-        <div className="lg:flex">
-          {/* Actor Image (25% of screen width) */}
-          <div className="lg:w-1/4 lg:flex-shrink-0">
-            <div className="w-full h-full flex items-center justify-center">
-              <img
-                src={
-                  "https://image.tmdb.org/t/p/w500" + actorData?.profile_path
-                }
-                alt="Actor Image"
-                className="w-full h-3/4 rounded object-cover"
-                style={{ border: "2px solid white" }}
-              />
-            </div>
-          </div>
-
-          {/* Actor Information (75% of screen width) */}
-          <div className="lg:w-3/4 p-4">
-            <div
-              className="card h-full bg-base-100 shadow-lg"
-              style={{ backgroundColor: "#202025" }}
-            >
-              <div
-                className="card-body flex flex-col justify-between h-full"
-                style={{ color: "white" }}
-              >
-                <div>
-                  <h2
-                    className="card-title"
-                    style={{ fontSize: 50, marginBottom: 20 }}
-                  >
-                    {actorData?.name}
-                  </h2>
-
-                  <h2 className="card-title">Gender</h2>
-                  <p>{actorData?.gender === 1 ? "Female" : "Male"}</p>
-
-                  <h2 className="card-title">Popularity</h2>
-                  <p>{actorData?.popularity}</p>
-
-                  <h2 className="card-title">Birthday</h2>
-                  <p>{actorData?.birthday}</p>
-
-                  <h2 className="card-title">Biography</h2>
-                  <p>{actorData?.biography}</p>
-                </div>
-                {/* Any additional content can be added here */}
-              </div>
-            </div>
+      <div className="hero bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <img
+            src={"https://image.tmdb.org/t/p/w500" + actorData?.profile_path}
+            className="max-w-sm rounded-lg shadow-2xl"
+            alt="actor_image"
+          />
+          <div>
+            <h1 className="text-5xl font-bold">{actorData?.name}</h1>
+            <p className="py-6">
+              Genger : {actorData?.gender === 1 ? "Female" : "Male"}
+            </p>
+            <p className="py-6">Popularity : {actorData?.popularity}</p>
+            <p className="py-6">Biography : {actorData?.biography}</p>
           </div>
         </div>
       </div>
@@ -94,8 +59,8 @@ function ActorDetailsPage() {
         className="mt-8"
         style={{ marginLeft: 91, marginRight: 91, paddingBottom: 20 }}
       >
-        <h2 className="text-2xl font-semibold mb-4 text-center md:text-center lg:text-start w-full md:w-full p-1 rounded lg:w-1/3 mr-auto bg-slate-800">
-          Related Movies
+        <h2 className="text-2xl font-semibold mb-4 text-center bg-gradient-to-r from-sky-950 to-slate-500 md:text-center lg:text-start w-full md:w-full p-1 rounded lg:w-1/3 mr-auto bg-slate-800">
+          RELATED MOVIES
         </h2>
         <div className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-4">
           {relatedMovies?.slice(0, 4).map((movie) => (
