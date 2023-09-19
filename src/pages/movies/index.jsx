@@ -15,21 +15,8 @@ const MovieList = () => {
         if (genre) {
           url += `&with_genres=${genre}`
         }
-        if (category === "popular") {
-          url =
-            "https://api.themoviedb.org/3/movie/popular?api_key=12fef202d421a561786c57849c4afbc3"
-        } else if (category === "top_rated") {
-          url =
-            "https://api.themoviedb.org/3/movie/top_rated?api_key=12fef202d421a561786c57849c4afbc3"
-        } else if (category === "latest") {
-          url =
-            "https://api.themoviedb.org/3/movie/latest?api_key=12fef202d421a561786c57849c4afbc3"
-        } else if (category === "now_playing") {
-          url =
-            "https://api.themoviedb.org/3/movie/now_playing?api_key=12fef202d421a561786c57849c4afbc3"
-        } else if (category === "upcoming") {
-          url =
-            "https://api.themoviedb.org/3/movie/upcoming?api_key=12fef202d421a561786c57849c4afbc3"
+        if (category) {
+          url = `https://api.themoviedb.org/3/movie/${category}?api_key=12fef202d421a561786c57849c4afbc3`
         }
         const response = await fetch(url)
         const data = await response.json()
@@ -40,7 +27,8 @@ const MovieList = () => {
     }
 
     fetchMovies()
-  }, [genre, category])
+  }, [category, genre])
+
   const getMovieListHeading = () => {
     if (genre) {
       return `${title}`

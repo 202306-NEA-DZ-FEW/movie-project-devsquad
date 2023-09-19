@@ -77,14 +77,6 @@ const Categories = () => {
                 Popular
               </button>
             </li>
-            <li className="hover:text-slate-800 hover:bg-slate-200 hover:rounded">
-              <button
-                value="latest"
-                onClick={() => handleCategoryChange("latest")}
-              >
-                Latest
-              </button>
-            </li>
           </ul>
         )}
       </div>
