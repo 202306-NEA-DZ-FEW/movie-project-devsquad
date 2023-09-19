@@ -102,8 +102,8 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             </div>
           </div>
 
-          {/* <div className="mt-1 flex flex-col mr-4 items-center gap-2">
-            <div className="mb-2 ml-2 text-4xl center tracking-tight font-extrabold text-white">
+          <div className="mt-1 flex flex-col mr-4 items-center gap-2 lg:block hidden">
+            <div className="mb-2 ml-2 text-4xl text-center center tracking-tight font-extrabold text-white">
               Related Movies
             </div>
             {relatedData?.results?.slice(0, 3).map((movie) => (
@@ -116,7 +116,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
                     <div>
                       <img
                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        className="max-w-16 max-h-16 rounded-sm"
+                        className="max-w-20 max-h-20 rounded-sm"
                         alt={movie.title}
                       />
                     </div>
@@ -130,7 +130,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
                 </Link>
               </div>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
 
