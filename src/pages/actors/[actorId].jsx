@@ -52,6 +52,7 @@ function ActorDetailsPage() {
               Genger : {actorData?.gender === 1 ? "Female" : "Male"}
             </p>
             <p className="py-6">Popularity : {actorData?.popularity}</p>
+            <p className="py-6">Birthday : {actorData?.birthday}</p>
             <p className="py-6">Biography : {actorData?.biography}</p>
           </div>
         </div>

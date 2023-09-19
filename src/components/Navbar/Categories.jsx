@@ -3,28 +3,8 @@ import { useRouter } from "next/router"
 
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("")
-  const [movies, setMovies] = useState([])
   const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false)
   const router = useRouter()
-
-  useEffect(() => {
-    // Fetch movies data based on the selected category
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${selectedCategory}?api_key=12fef202d421a561786c57849c4afbc3`,
-        )
-        const data = await response.json()
-        setMovies(data.results)
-      } catch (error) {
-        console.error("Error fetching movies:", error)
-      }
-    }
-
-    if (selectedCategory) {
-      fetchMovies()
-    }
-  }, [selectedCategory])
 
   const handleCategoryChange = (category) => {
     // Update the selected category
@@ -43,7 +23,7 @@ const Categories = () => {
       <div className=" ">
         <p onClick={toggleMoviesDropdown}>Movies</p>
         {isMoviesDropdownOpen && (
-          <ul className="absolute left-12 bg-slate-800 text-slate-300 w-3/4 h-38 rounded pt-2 pb-2">
+          <ul className="absolute left-12 bg-slate-800 text-slate-300 w-5/6 h-40 rounded pt-2 pb-2">
             {/* Render each category as a list item */}
             <li className="hover:text-slate-800 hover:bg-slate-200 hover:rounded">
               <button
@@ -85,18 +65,3 @@ const Categories = () => {
 }
 
 export default Categories
-
-{
-  /* <div>
-        {movies.map((movie) => (
-          <div key={movie.id}>
-            {movie.title}
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              className="w-full h-48 object-cover mb-4"
-            />
-          </div>
-        ))}
-      </div> */
-}

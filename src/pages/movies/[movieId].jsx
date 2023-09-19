@@ -10,7 +10,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
   )
 
   return (
-    <div className=" bg-gray-900">
+    <div className=" bg-gray-900 text-white">
       <Navbar />
       <section className="p-0 m-0 h-96 relative">
         <div className="w-full h-full flex items-center justify-center">
