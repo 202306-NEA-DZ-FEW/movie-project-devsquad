@@ -47,10 +47,10 @@ const HeadingCard = ({ movie }) => {
               {movie.original_title}
             </h2>
             <p className="text-1xl">{movie.overview}</p>
-            <p>Popularity: {movie.popularity}</p>
-            <p>Release Date: {movie.release_date}</p>
-            <p>Vote Average: {movie.vote_average}</p>
-            <p>Vote Count: {movie.vote_count}</p>
+            <p>Popularity : {movie.popularity}</p>
+            <p>Release date : {movie.release_date}</p>
+            <p>Average vote : {movie.vote_average}</p>
+            <p>Vote count : {movie.vote_count}</p>
             {trailerUrl && (
               <div className="card-actions justify-end">
                 <a href={trailerUrl} target="_blank" rel="noopener noreferrer">

@@ -1,31 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-
-function ActorsCard({ actor }) {
-  const profilePath = actor.profile_path
-  return (
-    <div className="relative flex flex-col rounded-xl bg-gray-900 border-2 bg-clip-border text-white shadow-md">
-      <div className="relative h-60 overflow-hidden rounded-t-xl bg-white fit bg-clip-border text-gray-700 shadow-lg">
-        <Image
-          className="hover:shadow-lg hover:scale-105 w-full h-full object-cover mb-2  transition-all duration-500 ease-in-out cursor-pointer hover:opacity-65"
-          src={`https://image.tmdb.org/t/p/w500${profilePath}`}
-          alt="profile-picture"
-          layout="fill"
-          objectFit="cover"
-        />
-      </div>
-
-      <div className="p-4 text-center bg-gray-900 border-s border-t-0 border-r border-b border-l border-gray-400 rounded-b-xl">
-        <h4 className="mb-2 block font-sans text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-          {actor.name}
-        </h4>
-        <p className="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-xs font-medium leading-relaxed text-transparent antialiased">
-          {actor.character}
-        </p>
-      </div>
-    </div>
-  )
-}
+import ActorsCard from "@/components/Cards/ActorsCard"
 
 export default function MoviePage({ movieData, creditsData, relatedData }) {
   const director = creditsData?.crew?.find(
@@ -161,9 +136,8 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
       </div>
       <div className="mt-6 grid p-4 grid-cols-5 gap-4">
         {creditsData?.cast?.slice(0, 5).map((actor) => (
-          // eslint-disable-next-line react/jsx-key
-          <Link href={`/actors/actorId?id=${actor.id}`}>
-            <ActorsCard key={actor.id} actor={actor} />
+          <Link key={actor.id} href={`/actors/actorId?id=${actor.id}`}>
+            <ActorsCard actor={actor} />
           </Link>
         ))}
       </div>

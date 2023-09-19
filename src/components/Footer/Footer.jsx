@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
-
 const Footer = () => {
   const users = [
     {
@@ -66,7 +65,7 @@ const Footer = () => {
   }, [])
 
   return (
-    <div className="bg-gradient-to-r from-slate-900 to-sky-950 text-neutral-content mt-4">
+    <div className="bg-gradient-to-r from-slate-900 to-sky-950 text-white mt-4">
       <div className="mb-4">
         <h2 className="text-blue text-1g mb-2 text-center md:text-center lg:text-center pt-1 pb-1">
           {" "}

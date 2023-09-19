@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { fetcher } from "@/utils/API"
+import MovieCard from "@/components/Cards/Movie-Card"
 
 function ActorDetailsPage() {
   // Retrieve the actor's ID from the route
@@ -99,31 +100,7 @@ function ActorDetailsPage() {
         <div className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-4">
           {relatedMovies?.slice(0, 4).map((movie) => (
             <Link key={movie.name} href={`/movies/${movie.id}`}>
-              <div
-                key={movie.id}
-                className="card h-full bg-base-100 shadow-lg hover:scale-105 hover:shadow-lg object-cover mt-2 mb-2 rounded-md transition-all duration-500 ease-in-out cursor-pointer hover:opacity-60 bg-gradient-to-r from-sky-950 via-blue-950 to-slate-500"
-                style={{ border: "2px solid white" }}
-              >
-                <div className="card-body">
-                  <img
-                    src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
-                    alt="movie"
-                    className="rounded h-3/4"
-                  />
-                  <h3
-                    className="text-lg font-semibold"
-                    style={{ color: "white" }}
-                  >
-                    {movie.title}
-                  </h3>
-
-                  <p className="mt-2" style={{ color: "white" }}>
-                    Release Year :
-                  </p>
-
-                  <p style={{ color: "white" }}>{movie.release_date}</p>
-                </div>
-              </div>
+              <MovieCard {...movie} />
             </Link>
           ))}
         </div>
