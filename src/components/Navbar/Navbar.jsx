@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <Link href={`./movies`}>
+        <Link href={`/`}>
           <Logo />
         </Link>
       </div>
