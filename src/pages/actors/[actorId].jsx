@@ -43,17 +43,18 @@ function ActorDetailsPage() {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src={"https://image.tmdb.org/t/p/w500" + actorData?.profile_path}
-            className="max-w-sm rounded-lg shadow-2xl"
+            className="w-full lg:max-w-sm rounded-lg shadow-2xl"
             alt="actor_image"
           />
-          <div>
-            <h1 className="text-5xl font-bold">{actorData?.name}</h1>
-            <p className="py-6">
-              Genger : {actorData?.gender === 1 ? "Female" : "Male"}
+          <div className="lg:pl-4 lg:w-1/2">
+            <h1 className="text-3xl lg:text-5xl font-bold">
+              {actorData?.name}
+            </h1>
+            <p className="py-2 lg:py-4">
+              Gender: {actorData?.gender === 1 ? "Female" : "Male"}
             </p>
-            <p className="py-6">Popularity : {actorData?.popularity}</p>
-            <p className="py-6">Birthday : {actorData?.birthday}</p>
-            <p className="py-6">Biography : {actorData?.biography}</p>
+            <p className="py-2 lg:py-4">Popularity: {actorData?.popularity}</p>
+            <p className="py-2 lg:py-4">Biography: {actorData?.biography}</p>
           </div>
         </div>
       </div>
