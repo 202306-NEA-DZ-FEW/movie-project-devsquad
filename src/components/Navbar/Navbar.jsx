@@ -41,7 +41,7 @@ const Navbar = () => {
             </li>
             <br></br>
             <li>
-              <Link href={`./actors`}>Actors</Link>
+              <Link href={`/actors`}>Actors</Link>
             </li>
             <br></br>
             <Genres />

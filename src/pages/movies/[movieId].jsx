@@ -40,7 +40,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             </h1>
             <div className="flex items-center mb-4">
               <p className="mr-2">
-                {movieData.original_language.toUpperCase()}
+                {movieData.original_language?.toUpperCase()}
               </p>
               <p>{movieData.runtime} min</p>
               <p className="mr-2 ml-3">⭐{movieData.vote_average}</p>
@@ -51,7 +51,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
               <ul>
                 <li>
                   <span className="text-white">Genres:</span>{" "}
-                  {movieData.genres.map((genre) => genre.name).join(", ")}
+                  {movieData.genres?.map((genre) => genre.name).join(", ")}
                 </li>
                 <li>
                   <span className="text-white">Release date:</span>{" "}
@@ -102,7 +102,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
             </div>
           </div>
 
-          <div className="mt-1 flex flex-col mr-4 items-center gap-2">
+          {/* <div className="mt-1 flex flex-col mr-4 items-center gap-2">
             <div className="mb-2 ml-2 text-4xl center tracking-tight font-extrabold text-white">
               Related Movies
             </div>
@@ -130,7 +130,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
                 </Link>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 

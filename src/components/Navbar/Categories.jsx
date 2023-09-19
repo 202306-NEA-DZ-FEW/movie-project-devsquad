@@ -5,7 +5,6 @@ const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState("")
   const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false)
   const router = useRouter()
-
   const handleCategoryChange = (category) => {
     // Update the selected category
     setSelectedCategory(category)
@@ -63,5 +62,4 @@ const Categories = () => {
     </>
   )
 }
-
 export default Categories

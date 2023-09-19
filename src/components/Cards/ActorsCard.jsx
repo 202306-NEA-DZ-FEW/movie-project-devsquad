@@ -14,8 +14,8 @@ function ActorsCard({ actor }) {
         />
       </div>
 
-      <div className="p-4 text-center bg-gray-900 border-s border-t-0 border-r border-b border-l border-gray-400 rounded-b-xl">
-        <h4 className="mb-2 block font-sans text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+      <div className="text-center h-38 bg-gray-900 border-s border-t-0 border-r border-b border-l border-gray-400 rounded-b-xl">
+        <h4 className="mb-2 block font-sans text-base font-semibold tracking-normal text-blue-gray-900">
           {actor.name}
         </h4>
         <p className="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-xs font-medium leading-relaxed text-transparent antialiased">

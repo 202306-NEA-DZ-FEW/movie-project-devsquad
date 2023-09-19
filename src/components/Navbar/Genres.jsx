@@ -25,9 +25,7 @@ const Genres = () => {
     <div>
       <ul>
         <li>
-          <Link href={`./`} onClick={toggleGenresDropdown}>
-            Genres
-          </Link>
+          <p onClick={toggleGenresDropdown}>Genres</p>
           <div>
             {isGenresDropdownOpen && (
               <ul className="absolute left-12 text-slate-300 bg-slate-800 dropdown rounded p-4 top-0 w-64 h-38 overflow-y-auto">
@@ -38,7 +36,7 @@ const Genres = () => {
                     key={genre.id}
                   >
                     <Link
-                      href={`./movies?genre=${genre.id}&title=${genre.name}`}
+                      href={`/movies?genre=${genre.id}&title=${genre.name}`}
                     >
                       {genre.name}
                     </Link>
