@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import ActorsCard from "@/components/Cards/ActorsCard"
+import Navbar from "@/components/Navbar/Navbar"
+import Footer from "@/components/Footer/Footer"
 
 export default function MoviePage({ movieData, creditsData, relatedData }) {
   const director = creditsData?.crew?.find(
@@ -9,6 +11,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
 
   return (
     <div className=" bg-gray-900">
+      <Navbar />
       <section className="p-0 m-0 h-96 relative">
         <div className="w-full h-full flex items-center justify-center">
           <Image
@@ -141,6 +144,7 @@ export default function MoviePage({ movieData, creditsData, relatedData }) {
           </Link>
         ))}
       </div>
+      <Footer />
     </div>
   )
 }

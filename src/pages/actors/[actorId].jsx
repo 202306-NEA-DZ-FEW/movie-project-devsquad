@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { fetcher } from "@/utils/API"
 import MovieCard from "@/components/Cards/Movie-Card"
+import Navbar from "@/components/Navbar/Navbar"
+import Footer from "@/components/Footer/Footer"
 
 function ActorDetailsPage() {
   // Retrieve the actor's ID from the route
@@ -36,6 +38,7 @@ function ActorDetailsPage() {
 
   return (
     <main className="bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
+      <Navbar />
       <div className="hero bg-gradient-to-r from-slate-600 to-slate-950 text-slate-300">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
@@ -70,6 +73,7 @@ function ActorDetailsPage() {
           ))}
         </div>
       </div>
+      <Footer />
     </main>
   )
 }

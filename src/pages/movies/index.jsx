@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import Navbar from "@/components/Navbar/Navbar"
 import MovieCard from "@/components/Cards/Movie-Card"
 import Link from "next/link"
+import Footer from "@/components/Footer/Footer"
 
 const MovieList = () => {
   const [movies, setMovies] = useState([])
@@ -53,6 +55,7 @@ const MovieList = () => {
 
   return (
     <div className="bg-gray-900 text-white">
+      <Navbar />
       <h1 className="text-4xl font-bold mb-4">{getMovieListHeading()}</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {movies?.map((movie) => (
@@ -69,6 +72,7 @@ const MovieList = () => {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   )
 }
