@@ -45,7 +45,7 @@ To run this project locally, follow these steps:
 
 ## Live Demo
 
-Check out the live demo of Reelio at [Reelio Live Demo](movie-project-devsquad.vercel.app/)!
+Check out the live demo of Reelio at [Reelio Live Demo](https://movie-project-devsquad.vercel.app/)!
 
 
 ## Bootcamp
