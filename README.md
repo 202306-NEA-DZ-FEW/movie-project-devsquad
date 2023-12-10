@@ -1,38 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Welcome to Reelio!
+
+## Project Description
+
+Reelio is an innovative online platform designed to bring movie enthusiasts together by providing a space to explore, discover, and share information about the latest movies. This project focuses on creating a user-friendly website where individuals can seamlessly browse through a vast collection of movies, explore details about each film, and connect with other users who share a passion for cinema.
+
+## Key Features
+
+1. **Homepage**: The central hub showcasing the latest and most popular movies.
+3. **Search functionality**: Easily find your favorite movies or discover new ones by searching for titles or keywords.
+4. **Filter movies**: Explore movies by genres, categories, and other relevant criteria.
+5. **Movie details page**: Dive into comprehensive information about each movie, including cast, plot summary, and release date.
+6. **Featured actors**: Discover the prominent actors associated with each movie.
+7. **All actors page**: Explore a comprehensive list of actors featured on Reelio.
+8. **Actor details page**: Learn more about your favorite actors, including their filmography and featured movies.
+9. **Responsive Design**: Ensure an optimal user experience on various devices.
+
+## Technology Stack
+
+- **Frontend**: Next.js, Tailwind CSS
+- **Data Source**: The Movie Database **(TMDb) API**
+
+## Project Goals
+
+Foster a vibrant movie community where users can explore, discuss, and share their love for cinema. Connect individuals with similar movie preferences and encourage the discovery of new films.
+
+## Team Members
+
+1. [Farouk Zemmouri](https://github.com/farouk26)
+2. [Takieddine Dilmi](https://github.com/takidilmi)
+3. [Mounib Zaidi](https://github.com/mounibzaidi)
+4. [Manel Hasna Haddoud](https://github.com/hasnahadd)
+4. [Halla Hamidi](https://github.com/Halla24)
+4. [Mouloud Mecheter](https://github.com/mouloud247)
+
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone the repository into your local machine by running the command `git clone https://github.com/[YourRepository]`
+2. Install dependencies: `npm install`
+3. Start the development server by running `npm run dev`
+4. Open your browser and visit http://localhost:3000/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live Demo
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Check out the live demo of Reelio at [Reelio Live Demo](movie-project-devsquad.vercel.app/)!
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Bootcamp
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Re:Coded** - [202306-NEA-DZ-FEW]
